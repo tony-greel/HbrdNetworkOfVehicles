@@ -194,7 +194,6 @@ public class RegisterDindingVehicleActivity extends BaseActivity implements View
             @Override
             public void onError(Request request, IOException e) {
                 Toast.makeText(RegisterDindingVehicleActivity.this, "服务器连接失败", Toast.LENGTH_SHORT).show();
-                Log.d("LJJ",e.getMessage());
             }
             @Override
             public void onSuccess(Request request, String result) {
