@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:paddingBottom="5dp"
+        android:elevation="5dp"
+        android:background="@drawable/img_top_background"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+        <ImageView
+            android:id="@+id/account_security_img_back"
+            android:layout_width="14dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/img_register_back"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="27dp"
+            android:text="实时监控"
+            android:textSize="20dp"
+            android:textColor="#BCEFFF"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/img_my_car_background">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/main_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v4.view.ViewPager>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="31dp">
+            <ImageView
+                android:id="@+id/img_1"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/img_circular"
+                android:layout_marginLeft="33dp"/>
+
+            <ImageView
+                android:id="@+id/img_2"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/img_circular_two" />
+
+            <ImageView
+                android:id="@+id/img_3"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/img_circular_two"
+                android:layout_marginLeft="33dp"/>
+
+            <ImageView
+                android:id="@+id/img_4"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/img_circular"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
