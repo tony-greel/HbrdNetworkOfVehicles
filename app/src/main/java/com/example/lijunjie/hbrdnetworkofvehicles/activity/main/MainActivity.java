@@ -133,12 +133,6 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
         main_rl = findViewById(R.id.main_rl);
         main_rl.getBackground().setAlpha(190);
 
-        SharedPreferences sp = getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
-        String name = sp.getString("name", null);
-        if (name != null){
-            main_rl.setVisibility(View.GONE);
-        }
-
         main_login_but = findViewById(R.id.main_login_but);
 
         side_pull_drawer = findViewById(R.id.side_pull_drawer);
@@ -154,6 +148,19 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
 
     }
 
+    /**
+     * main调用singleTask后跳转的数据必须重写此方法并且在该方法中完成数据对接
+     * @param intent
+     */
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        SharedPreferences sp = getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
+        String name = sp.getString("name", null);
+        if (name != null){
+            main_rl.setVisibility(View.GONE);
+        }
+    }
 
     /**
      * 监听初始化

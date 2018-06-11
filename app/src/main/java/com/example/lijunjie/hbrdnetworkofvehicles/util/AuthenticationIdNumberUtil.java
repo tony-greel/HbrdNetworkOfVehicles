@@ -1,5 +1,6 @@
 package com.example.lijunjie.hbrdnetworkofvehicles.util;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.text.ParseException;

@@ -36,17 +36,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="229dp"
+        android:layout_marginTop="209dp"
         android:layout_height="50dp">
         <EditText
-            android:id="@+id/registered_bound_vehicle_et_account"
+            android:id="@+id/registered_bound_vehicle_et_serial_number"
             android:textSize="14sp"
-            android:hint="车牌号码"
+            android:hint="序列号"
             android:textColorHint="#BCEFFF"
             android:textColor="#BCEFFF"
             android:maxLines="1"
             android:background="@null"
-            android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="20dp"
             android:singleLine="true"
@@ -74,17 +73,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="288dp"
+        android:layout_marginTop="268dp"
         android:layout_height="50dp">
         <EditText
-            android:id="@+id/registered_bound_vehicle_et_license_plate"
+            android:id="@+id/registered_bound_vehicle_et_vehicle_license_plate_number"
             android:textSize="14sp"
-            android:hint="汽车品牌"
+            android:hint="车牌号"
             android:textColorHint="#BCEFFF"
             android:textColor="#BCEFFF"
             android:maxLines="1"
             android:background="@null"
-            android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="20dp"
             android:singleLine="true"
@@ -112,12 +110,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="347dp"
+        android:layout_marginTop="327dp"
         android:layout_height="50dp">
         <EditText
-            android:id="@+id/registered_bound_vehicle_et_frame"
+            android:id="@+id/registered_bound_vehicle_et_brand"
             android:textSize="14sp"
-            android:hint="车架号"
+            android:hint="车辆品牌"
             android:textColorHint="#BCEFFF"
             android:textColor="#BCEFFF"
             android:maxLines="1"
@@ -151,12 +149,50 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="406dp"
+        android:layout_marginTop="386dp"
         android:layout_height="50dp">
         <EditText
-            android:id="@+id/registered_bound_vehicle_et_car_color"
+            android:id="@+id/registered_bound_vehicle_et_car_model"
             android:textSize="14sp"
-            android:hint="车辆颜色"
+            android:hint="车辆型号"
+            android:textColorHint="#BCEFFF"
+            android:textColor="#BCEFFF"
+            android:maxLines="1"
+            android:background="@null"
+            android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="20dp"
+            android:singleLine="true"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>m
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="24dp"
+            android:singleLine="true"
+            android:layout_marginTop="40dp"
+            android:background="#BCEFFF"/>
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/registered_bound_vehicle_img_disappear_four"
+            android:layout_marginRight="25dp"
+            android:src="@drawable/img_login_signout"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="11dp"
+            android:layout_height="11dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="445dp"
+        android:layout_height="50dp">
+        <EditText
+            android:id="@+id/registered_bound_vehicle_et_frame_number"
+            android:textSize="14sp"
+            android:hint="车架号"
             android:textColorHint="#BCEFFF"
             android:textColor="#BCEFFF"
             android:maxLines="1"
@@ -178,7 +214,7 @@
             android:background="#BCEFFF"/>
         <ImageView
             android:visibility="gone"
-            android:id="@+id/registered_bound_vehicle_img_disappear_four"
+            android:id="@+id/registered_bound_vehicle_img_serial_number"
             android:layout_marginRight="25dp"
             android:src="@drawable/img_login_signout"
             android:layout_centerVertical="true"

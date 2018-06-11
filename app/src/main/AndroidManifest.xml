@@ -40,7 +40,7 @@
             android:value="33de31372cfe60e505b99ccb34db83aa">
         </meta-data>
 
-        <activity android:name=".activity.main.MainActivity">
+        <activity android:name=".activity.main.MainActivity" android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,20 +48,20 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.loginand.LoginActivity" android:launchMode="singleTask"></activity>
-        <activity android:name=".activity.registration.RegisterActivity" android:launchMode="singleTask"></activity>
-        <activity android:name=".activity.registration.SuccessActivity" android:launchMode="singleTask"></activity>
-        <activity android:name=".activity.sidepull.MyCarAddActivity" android:launchMode="singleTask"></activity>
-        <activity android:name=".activity.registration.RegisterDindingVehicleActivity" android:launchMode="singleTask"></activity>
-        <activity android:name=".activity.sidepull.AccountSecurityActivity" android:launchMode="singleTask"></activity>
-        <activity android:name=".activity.sidepull.FeedbackActivity" android:launchMode="singleTask"></activity>
-        <activity android:name=".activity.sidepull.AddingVehiclesActivity" android:launchMode="singleTask"></activity>
-        <activity android:name=".activity.sidepull.SecurityCertificationActivity" android:launchMode="singleTask"></activity>
-        <activity android:name=".activity.sidepull.ResetPasswordActivity" android:launchMode="singleTask"></activity>
-        <activity android:name=".activity.main.HistoricalTrackActivity" android:launchMode="singleTask"></activity>
-        <activity android:name=".activity.registration.RetrieveThePasswordActivity" android:launchMode="singleTask"></activity>
-        <activity android:name=".activity.sidepull.ModifyPhoneNumberActivity" android:launchMode="singleTask"></activity>
-        <activity android:name=".activity.main.VehicleControlActivity" android:launchMode="singleTask"></activity>
+        <activity android:name=".activity.loginand.LoginActivity" ></activity>
+        <activity android:name=".activity.registration.RegisterActivity" ></activity>
+        <activity android:name=".activity.registration.SuccessActivity" ></activity>
+        <activity android:name=".activity.sidepull.MyCarAddActivity" ></activity>
+        <activity android:name=".activity.registration.RegisterDindingVehicleActivity" ></activity>
+        <activity android:name=".activity.sidepull.AccountSecurityActivity" ></activity>
+        <activity android:name=".activity.sidepull.FeedbackActivity" ></activity>
+        <activity android:name=".activity.sidepull.AddingVehiclesActivity" ></activity>
+        <activity android:name=".activity.sidepull.SecurityCertificationActivity"></activity>
+        <activity android:name=".activity.sidepull.ResetPasswordActivity" ></activity>
+        <activity android:name=".activity.main.HistoricalTrackActivity" ></activity>
+        <activity android:name=".activity.registration.RetrieveThePasswordActivity"></activity>
+        <activity android:name=".activity.sidepull.ModifyPhoneNumberActivity" ></activity>
+        <activity android:name=".activity.main.VehicleControlActivity" ></activity>
 
 
 

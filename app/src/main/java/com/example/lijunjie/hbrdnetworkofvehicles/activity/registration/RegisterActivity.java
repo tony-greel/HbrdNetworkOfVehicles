@@ -266,13 +266,35 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             public void onSuccess(Request request, String result) {
                 Log.d("TAG", "lss" + result);
                 jsonAnalytic(result);
+                analogLanding();
                 dismiss();
             }
         });
-
-        analogLanding();
     }
 
+    /**
+     *通过返回的json数据来判断用户名这些是否重复
+     * @param result
+     */
+    private void jsonAnalytic(String result) {
+        try {
+            JSONObject jsonObject = new JSONObject(result);
+
+            String Status = jsonObject.getString("Status");
+            if (Status.equals("ok")) {
+            }else if (Status.equals("error")){
+                Toast.makeText(this, "用户名、手机号、身份证重复，请重新输入！", Toast.LENGTH_SHORT).show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    /**
+     * 请求服务器成功调此方法，用于模拟登陆，拿到以缓存的ID和密码进行模拟登陆
+     */
     private void analogLanding() {
         SharedPreferences sp = getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
         String name = sp.getString("name", null);
@@ -293,25 +315,38 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onSuccess(Request request, String result) {
                 Log.d("TAG", "wss" + result);
-                jsonAnalytic(result);
+                userJsonData(result);
             }
         });
     }
 
 
-    private void jsonAnalytic(String result) {
+    /**
+     * 解析模拟登陆的Json数据
+     * @param result
+     */
+    private void userJsonData(String result) {
         try {
             JSONObject jsonObject = new JSONObject(result);
+            jsonObject = jsonObject.getJSONObject("user");
+            User user = new User();
+            user.setOneselIdCard(jsonObject.getString("oneselIdCard"));
+            user.setOneselIdName(jsonObject.getString("oneselIdName"));
+            user.setOneselfPhone(jsonObject.getString("oneselfPhone"));
+            user.setOneselfSerial(jsonObject.getString("oneselfSerial"));
+            user.setOneselfName(jsonObject.getString("oneselfName"));
 
-            String Status = jsonObject.getString("Status");
-            if (Status.equals("ok")) {
-            }else if (Status.equals("error")){
-                Toast.makeText(this, "用户名、手机号、身份证重复，请重新输入！", Toast.LENGTH_SHORT).show();
-            }
+            //缓存用户ID
+            SharedPreferences sp = getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("name",user.getOneselfSerial());
+            editor.commit();
+
+            Intent intent = new Intent(RegisterActivity.this, RegisterDindingVehicleActivity.class);
+            startActivity(intent);
         } catch (JSONException e) {
-        e.printStackTrace();
+            e.printStackTrace();
         }
-
     }
 
 
