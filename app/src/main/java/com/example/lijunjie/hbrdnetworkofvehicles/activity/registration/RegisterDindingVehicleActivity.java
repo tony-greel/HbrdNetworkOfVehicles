@@ -215,6 +215,7 @@ public class RegisterDindingVehicleActivity extends BaseActivity implements View
             }else {
                 Intent intent = new Intent(RegisterDindingVehicleActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         }catch (JSONException e){
             e.printStackTrace();

@@ -215,6 +215,8 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
                 break;
 
             case R.id.main_fab_2:
+                Intent main_fab_2_intent = new Intent(this, VehicleControlActivity.class);
+                startActivity(main_fab_2_intent);
                 break;
 
             case R.id.main_fab_3:

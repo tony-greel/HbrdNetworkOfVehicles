@@ -22,9 +22,6 @@ import cn.bmob.sms.BmobSMS;
 public class VehicleControlActivity extends AppCompatActivity implements View.OnClickListener{
 
     private ViewPager main_viewPager;
-
-    private ImageView img_1 , img_2 , img_3 , img_4;
-
     private FragmentAdapter adapter;
 
 
@@ -56,11 +53,6 @@ public class VehicleControlActivity extends AppCompatActivity implements View.On
      */
     private void initialization() {
         main_viewPager = findViewById(R.id.main_view_pager);
-
-        img_1 = findViewById(R.id.img_1);
-        img_2 = findViewById(R.id.img_2);
-        img_3 = findViewById(R.id.img_3);
-        img_4 = findViewById(R.id.img_4);
     }
 
     /**
@@ -68,13 +60,6 @@ public class VehicleControlActivity extends AppCompatActivity implements View.On
      */
     private void binding() {
         main_viewPager.setOnClickListener(this);
-
-        img_1.setOnClickListener(this);
-        img_2.setOnClickListener(this);
-        img_3.setOnClickListener(this);
-        img_4.setOnClickListener(this);
-
-
     }
 
     /**
@@ -97,22 +82,8 @@ public class VehicleControlActivity extends AppCompatActivity implements View.On
 
             @Override
             public void onPageSelected(int position) {
-                switch (position) {
-                    case 0:
-                        img_1.setVisibility(View.VISIBLE);
-                        img_2.setVisibility(View.VISIBLE);
-                        img_3.setVisibility(View.GONE);
-                        img_4.setVisibility(View.GONE);
-                        break;
-                    case 1:
-                        img_1.setVisibility(View.GONE);
-                        img_2.setVisibility(View.GONE);
-                        img_3.setVisibility(View.VISIBLE);
-                        img_4.setVisibility(View.VISIBLE);
-                        break;
-                }
-            }
 
+            }
             @Override
             public void onPageScrollStateChanged(int state) {
 

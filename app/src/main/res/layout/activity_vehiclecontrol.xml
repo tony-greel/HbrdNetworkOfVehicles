@@ -8,6 +8,7 @@
     <RelativeLayout
         android:paddingBottom="5dp"
         android:elevation="5dp"
+        android:gravity="center_vertical"
         android:background="@drawable/img_top_background"
         android:layout_width="match_parent"
         android:layout_height="70dp">
@@ -41,40 +42,7 @@
             android:layout_height="match_parent">
         </android.support.v4.view.ViewPager>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="31dp">
-            <ImageView
-                android:id="@+id/img_1"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:background="@drawable/img_circular"
-                android:layout_marginLeft="33dp"/>
 
-            <ImageView
-                android:id="@+id/img_2"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:background="@drawable/img_circular_two" />
-
-            <ImageView
-                android:id="@+id/img_3"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:background="@drawable/img_circular_two"
-                android:layout_marginLeft="33dp"/>
-
-            <ImageView
-                android:id="@+id/img_4"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:background="@drawable/img_circular"/>
-
-        </RelativeLayout>
 
     </RelativeLayout>
 
