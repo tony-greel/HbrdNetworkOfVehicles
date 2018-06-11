@@ -1,6 +1,8 @@
 package com.example.lijunjie.hbrdnetworkofvehicles.activity.registration;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -18,6 +20,7 @@ import com.example.lijunjie.hbrdnetworkofvehicles.activity.main.MainActivity;
 import com.example.lijunjie.hbrdnetworkofvehicles.R;
 import com.example.lijunjie.hbrdnetworkofvehicles.activity.BaseActivity;
 import com.example.lijunjie.hbrdnetworkofvehicles.bean.MyUsers;
+import com.example.lijunjie.hbrdnetworkofvehicles.bean.User;
 import com.example.lijunjie.hbrdnetworkofvehicles.util.AuthenticationIdNumberUtil;
 import com.example.lijunjie.hbrdnetworkofvehicles.util.CountDownTimerUtils;
 import com.example.lijunjie.hbrdnetworkofvehicles.util.network.NetworkRequestUtil;
@@ -209,6 +212,17 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         String verification = register_et_verification.getText().toString();
         String again_password = register_et_again_password.getText().toString().trim();
 
+        User user = new User();
+        user.setOneselfName(account);
+        user.setPassword(password);
+
+        //缓存用户ID
+        SharedPreferences sp = getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("name",user.getOneselfName());
+        editor.putString("password",user.getPassword());
+        editor.commit();
+
         if (account.equals("") || password.equals("") ||
                 phone_number.equals("") || id.equals("") ||
                 full_name.equals("") || again_password.equals("") ||
@@ -255,7 +269,35 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 dismiss();
             }
         });
+
+        analogLanding();
     }
+
+    private void analogLanding() {
+        SharedPreferences sp = getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
+        String name = sp.getString("name", null);
+        String password = sp.getString("password", null);
+
+        String url = "http://1517a91z44.iask.in:35052/landing";
+        FormBody formBody = new FormBody
+                .Builder()
+                .add("name", name)
+                .add("pass", password)
+                .add("Consumer","Oneself")
+                .build();
+        NetworkRequestUtil.getInstance().asyncPost(url, formBody, new NetworkRequestUtilListener() {
+            @Override
+            public void onError(Request request, IOException e) {
+                Toast.makeText(RegisterActivity.this, "服务器连接失败", Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onSuccess(Request request, String result) {
+                Log.d("TAG", "wss" + result);
+                jsonAnalytic(result);
+            }
+        });
+    }
+
 
     private void jsonAnalytic(String result) {
         try {
@@ -269,6 +311,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         } catch (JSONException e) {
         e.printStackTrace();
         }
+
     }
 
 

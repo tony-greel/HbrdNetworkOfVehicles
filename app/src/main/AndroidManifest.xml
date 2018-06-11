@@ -61,6 +61,8 @@
         <activity android:name=".activity.main.HistoricalTrackActivity" android:launchMode="singleTask"></activity>
         <activity android:name=".activity.registration.RetrieveThePasswordActivity" android:launchMode="singleTask"></activity>
         <activity android:name=".activity.sidepull.ModifyPhoneNumberActivity" android:launchMode="singleTask"></activity>
+        <activity android:name=".activity.main.VehicleControlActivity" android:launchMode="singleTask"></activity>
+
 
 
 

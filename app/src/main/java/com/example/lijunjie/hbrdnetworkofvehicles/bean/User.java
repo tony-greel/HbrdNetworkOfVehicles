@@ -16,6 +16,8 @@ public class User {
 
     private String oneselfName; // 用户名
 
+    private String password; // 密码
+
 
     public String getOneselIdCard() {
         return oneselIdCard;
@@ -60,5 +62,13 @@ public class User {
     @Override
     public String toString() {
         return "oneselIdCard:"+oneselIdCard+",oneselIdName:"+oneselfName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
