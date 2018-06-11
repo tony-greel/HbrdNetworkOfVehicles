@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:paddingBottom="5dp"
+        android:elevation="5dp"
+        android:background="@drawable/img_top_background"
+        android:layout_width="match_parent"
+        android:layout_height="65dp">
+        <ImageView
+            android:id="@+id/feedback_img_back"
+            android:layout_width="9dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/img_register_back"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:text="用户反馈"
+            android:textSize="17sp"
+            android:textColor="#BCEFFF"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="65dp"
+        android:background="@drawable/img_my_car_background">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rb1"
+                    android:layout_marginTop="21dp"
+                    android:layout_marginLeft="13dp"
+                    android:checked="true" />
+                <TextView
+                    android:layout_marginLeft="50dp"
+                    android:textColor="#BCEFFF"
+                    android:textColorHint="#BCEFFF"
+                    android:textSize="14sp"
+                    android:text="产品建议"
+                    android:layout_marginTop="27dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rb2"
+                    android:layout_marginTop="21dp"
+                    android:layout_marginLeft="51dp" />
+                <TextView
+                    android:layout_marginLeft="95dp"
+                    android:textColor="#BCEFFF"
+                    android:textColorHint="#BCEFFF"
+                    android:textSize="14sp"
+                    android:text="程序反馈"
+                    android:layout_marginTop="27dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_marginTop="100dp"
+            android:background="@drawable/feedback_input_bg"
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+            <EditText
+                android:id="@+id/feedback_information"
+                android:textColor="#000825"
+                android:textColorHint="#BCEFFF"
+                android:textSize="14sp"
+                android:gravity="left"
+                android:hint="请输入反馈,我们将不断改进."
+                android:background="#000825"
+                android:layout_margin="@dimen/setting_margin_left"
+                android:layout_width="match_parent"
+                android:layout_height="184dp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:background="#000825"
+            android:layout_marginTop="285dp"
+            android:layout_width="match_parent"
+            android:layout_height="37dp">
+            <EditText
+                android:id="@+id/feedback_user_contact_mode"
+                android:textColor="#BCEFFF"
+                android:textColorHint="#BCEFFF"
+                android:textSize="14sp"
+                android:layout_centerVertical="true"
+                android:hint="  请填写您的手机或邮箱，方便我们及时联系您。"
+                android:layout_marginRight="@dimen/setting_margin_left"
+                android:layout_marginLeft="@dimen/setting_margin_left"
+                android:background="#000825"
+                android:layout_width="match_parent"
+                android:layout_height="37dp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="420dp">
+            <Button
+                android:id="@+id/feedback_submission"
+                android:layout_width="320dp"
+                android:layout_height="43dp"
+                android:textColor="#ffffff"
+                android:text="提交"
+                android:textSize="20sp"
+                android:layout_marginLeft="30dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/background_gradual_change" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

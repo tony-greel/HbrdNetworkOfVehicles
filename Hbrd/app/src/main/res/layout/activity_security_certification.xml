@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:paddingBottom="5dp"
+        android:elevation="5dp"
+        android:background="@drawable/img_top_background"
+        android:layout_width="match_parent"
+        android:layout_height="65dp">
+        <ImageView
+            android:id="@+id/security_certification_img_back"
+            android:layout_width="9dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/img_register_back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="安全认证"
+            android:textSize="16sp"
+            android:textColor="#BCEFFF"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="65dp"
+        android:background="@drawable/img_my_car_background">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="38dp"
+            android:layout_centerHorizontal="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置密码需要先验证您的手机号"
+                android:textSize="10sp"
+                android:textColor="#BCEFFF"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="91dp"
+            android:layout_height="50dp">
+            <EditText
+                android:id="@+id/security_certification_et_verification"
+                android:textSize="14sp"
+                android:hint="请输入验证码"
+                android:textColorHint="#BCEFFF"
+                android:textColor="#BCEFFF"
+                android:maxLines="1"
+                android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:singleLine="true"
+                android:layout_centerVertical="true"
+                android:layout_width="208dp"
+                android:layout_height="50dp"/>
+
+            <Button
+                android:id="@+id/security_certification_verification"
+                android:layout_width="112dp"
+                android:layout_height="36dp"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentRight ="true"
+                android:layout_marginTop="8dp"
+                android:textColor="#BCEFFF"
+                android:textSize="12sp"
+                android:text="获取验证码"
+                android:background="@drawable/background_gradual_change" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="275dp">
+        <Button
+            android:id="@+id/security_certification_vehicle_button"
+            android:layout_width="320dp"
+            android:layout_height="43dp"
+            android:textColor="#BCEFFF"
+            android:text="下一步"
+            android:textSize="20sp"
+            android:layout_marginLeft="30dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/background_gradual_change"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_login_background">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="96dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/img_login_logo"/>
+        <TextView
+            android:id="@+id/side_pull_frame_fragment_tx_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="136dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="#cbf5ff"
+            android:textSize="20sp"
+            android:text="65****08@qq.com"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="225dp">
+        <RelativeLayout
+            android:id="@+id/side_pull_frame_rl_my_car"
+            android:descendantFocusability="beforeDescendants"
+            android:background="@drawable/relativelayout_selector"
+            android:layout_width="match_parent"
+            android:layout_height="58dp">
+            <ImageView
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="21dp"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/img_side_pull_frame_my_car_two" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的车辆"
+                android:textColor="#cdf5ff"
+                android:textSize="17sp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="19dp"
+                android:layout_marginLeft="59dp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/side_pull_frame_rl_account_security"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:descendantFocusability="beforeDescendants"
+            android:background="@drawable/relativelayout_selector"
+            android:layout_marginTop="70dp">
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="16dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="21dp"
+                android:layout_marginLeft="31dp"
+                android:background="@drawable/img_side_pull_account_security_two" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="账号安全"
+                android:textColor="#cdf5ff"
+                android:textSize="17sp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="19dp"
+                android:layout_marginLeft="59dp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/side_pull_frame_rl_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:descendantFocusability="beforeDescendants"
+            android:background="@drawable/relativelayout_selector"
+            android:layout_marginTop="140dp">
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="21dp"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/img_side_pull_feedback_two" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="反馈"
+                android:textColor="#cdf5ff"
+                android:textSize="17sp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="19dp"
+                android:layout_marginLeft="59dp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/side_pull_frame_rl_sign_out"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:descendantFocusability="beforeDescendants"
+            android:background="@drawable/relativelayout_selector"
+            android:layout_marginTop="210dp">
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="16dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="21dp"
+                android:layout_marginLeft="31dp"
+                android:background="@drawable/sign_out" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="退出登录"
+                android:textColor="#cdf5ff"
+                android:textSize="17sp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="19dp"
+                android:layout_marginLeft="59dp" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/side_pull_frame_img_about"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/img_about_two"
+            android:layout_marginBottom="22dp"
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

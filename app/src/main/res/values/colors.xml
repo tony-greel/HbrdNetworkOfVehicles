@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#BCEFFF</color>
+
+    <color name="color_primary">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="color_primary_dark">#001c53</color>
+    <color name="color_accent">#108de8</color>
+
+    <color name="login_tx_short_message">#000000</color>
+    <color name="login_tx_short_message_two">#787878</color>
+
+    <color name="login_tx_account">#000000</color>
+    <color name="login_tx_account_two">#919191</color>
+
+    <color name="login_view_one">#000000</color>
+    <color name="login_view_one_two">#787878</color>
+
+    <color name="login_view_two">#000000</color>
+    <color name="login_view_two_two">#787878</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="base_color_text_black">#3e3e39</color>
+    <color name="base_color_text_white">#ffffff</color>
+
+    <color name="rl_background">#3931c6</color>
+    <color name="rl_background_two">#31abe7</color>
+
+    <color name="dialog_bg_color_grey">#FFFFFF</color>
+
+    <color name="dialog_box_background">#01428C</color>
+    <color name="dialog_box_determine_background">#D9583E</color>
+    <color name="dialog_box_cancel_background">#003873</color>
+
+
+
+</resources>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:paddingBottom="5dp"
+        android:elevation="5dp"
+        android:background="@drawable/img_top_background"
+        android:layout_width="match_parent"
+        android:layout_height="65dp">
+        <ImageView
+            android:id="@+id/adding_vehicles_img_back"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/img_register_back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="28dp"
+            android:text="我的车辆"
+            android:textSize="20dp"
+            android:textColor="#BCEFFF"/>
+
+    </RelativeLayout>
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginTop="65dp"
+      android:background="@drawable/img_my_car_background">
+      <android.support.v7.widget.RecyclerView
+          android:id="@+id/adding_vehicles_recycler"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"/>
+  </RelativeLayout>
+
+
+
+</RelativeLayout>

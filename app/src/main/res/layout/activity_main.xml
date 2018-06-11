@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout android:id="@+id/side_pull_drawer"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.lijunjie.hbrdnetworkofvehicles.activity.main.MainActivity"
+    xmlns:fab="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/main_rl_whole"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:elevation="5dp"
+                android:background="@drawable/main_background"
+                android:layout_width="match_parent"
+                android:layout_height="84dp">
+                <ImageView
+                    android:id="@+id/main_img_personal_information"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/user_information"/>
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/img_login_logo"/>
+
+                <ImageView
+                    android:id="@+id/main_img_vehicle"
+                    android:layout_width="20dp"
+                    android:layout_height="18dp"
+                    android:layout_marginRight="13dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/vehicle_information"/>
+            </RelativeLayout>
+
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="84dp">
+
+                <com.amap.api.maps.MapView
+                android:id="@+id/main_map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <RelativeLayout
+                android:id="@+id/main_rl"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@drawable/main_tx">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="检测到您当前未登录账号，请先进行账号登录"
+                        android:textSize="13dp" />
+
+                    <Button
+                        android:id="@+id/main_login_but"
+                        android:layout_width="72dp"
+                        android:layout_height="29dp"
+                        android:background="@drawable/login_button"
+                        android:text="登录"
+                        android:textColor="#cbf5ff"
+                        android:textSize="13sp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp" />
+            </RelativeLayout>
+
+            <com.getbase.floatingactionbutton.FloatingActionsMenu
+                android:id="@+id/main_fab_menu"
+                fab:fab_addButtonColorNormal="@color/color_accent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end">
+                <com.getbase.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/main_fab_3" />
+                <com.getbase.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/main_fab_2" />
+                <com.getbase.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    fab:fab_colorNormal="#ffffff"
+                    fab:fab_icon="@mipmap/ic_launcher_round"
+                    fab:fab_colorPressed="#ffffff"
+                    fab:fab_title="可点击项"
+                    android:id="@+id/main_fab_1" />
+            </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+        </FrameLayout>
+    </RelativeLayout>
+
+
+
+    <fragment
+        android:name="com.example.lijunjie.hbrdnetworkofvehicles.fragment.SidePullFrameFragment"
+        android:tag="left"
+        android:layout_gravity="start|left"
+        android:layout_width="234dp"
+        android:layout_height="match_parent"></fragment>
+
+
+
+</android.support.v4.widget.DrawerLayout>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_login_background">
+
+    <RelativeLayout
+        android:paddingBottom="5dp"
+        android:layout_marginTop="46dp"
+        android:elevation="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/success_img_back"
+            android:layout_width="12dp"
+            android:layout_height="21dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/img_register_back"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_marginTop="175dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="78dp"
+            android:layout_height="78dp"
+            android:background="@drawable/img_success"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="276dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="注册成功"
+            android:textSize="20sp"
+            android:textColor="#BCEFFF"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="364dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/success_button"
+            android:layout_width="320dp"
+            android:layout_height="43dp"
+            android:textColor="#FFFFFF"
+            android:text="绑定车辆"
+            android:layout_marginLeft="30dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/background_gradual_change"/>
+
+        <TextView
+            android:id="@+id/success_tv_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="跳过此步"
+            android:textColor="#BCEFFF"
+            android:textSize="12sp"
+            android:layout_marginTop="60dp"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

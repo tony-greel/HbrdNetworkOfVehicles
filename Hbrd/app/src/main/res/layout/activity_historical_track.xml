@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:paddingBottom="5dp"
+        android:elevation="5dp"
+        android:background="@drawable/img_top_background"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+        <ImageView
+            android:id="@+id/historical_security_img_back"
+            android:layout_width="12dp"
+            android:layout_height="21dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/img_register_back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="33dp"
+            android:text="历史轨迹"
+            android:textSize="20dp"
+            android:textColor="#BCEFFF"/>
+    </RelativeLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp">
+
+        <com.amap.api.maps.MapView
+            android:id="@+id/historical_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <RelativeLayout
+            android:id="@+id/historical_rl"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/query_background">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp">
+                <TextView
+                    android:id="@+id/historical_tv_start"
+                    android:layout_width="235dp"
+                    android:layout_height="25dp"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"
+                    android:text="选择日期，查寻车辆轨迹"
+                    android:background="@drawable/background_historical_track"
+                    android:textSize="13dp" />
+                <ImageView
+                    android:id="@+id/historical_img_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/img_historical_drop_down"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="215dp" />
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/historical_login_but"
+                android:layout_width="65dp"
+                android:layout_height="27dp"
+                android:background="@drawable/login_button"
+                android:text="查询"
+                android:textColor="#cbf5ff"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp" />
+        </RelativeLayout>
+
+
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/fab_menu"
+            fab:fab_addButtonColorNormal="@color/color_accent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end">
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/fab_1"/>
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/fab_2" />
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/fab_3" />
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="#ffffff"
+                fab:fab_icon="@mipmap/ic_launcher_round"
+                fab:fab_colorPressed="#ffffff"
+                fab:fab_title="可点击项"
+                android:id="@+id/fab_4" />
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    </FrameLayout>
+</RelativeLayout>
