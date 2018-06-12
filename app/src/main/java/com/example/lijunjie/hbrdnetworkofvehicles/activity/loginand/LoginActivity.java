@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -23,7 +24,11 @@ import com.example.lijunjie.hbrdnetworkofvehicles.R;
 import com.example.lijunjie.hbrdnetworkofvehicles.activity.BaseActivity;
 import com.example.lijunjie.hbrdnetworkofvehicles.activity.registration.RegisterActivity;
 import com.example.lijunjie.hbrdnetworkofvehicles.activity.registration.RetrieveThePasswordActivity;
-import com.example.lijunjie.hbrdnetworkofvehicles.bean.User;
+import com.example.lijunjie.hbrdnetworkofvehicles.bean.Oneself;
+import com.example.lijunjie.hbrdnetworkofvehicles.bean.Place;
+import com.example.lijunjie.hbrdnetworkofvehicles.util.HbrdJsonParse;
+import com.example.lijunjie.hbrdnetworkofvehicles.util.OkHttpAsk;
+import com.example.lijunjie.hbrdnetworkofvehicles.util.OkHttpAskListener;
 import com.example.lijunjie.hbrdnetworkofvehicles.util.network.NetworkRequestUtil;
 import com.example.lijunjie.hbrdnetworkofvehicles.util.network.NetworkRequestUtilListener;
 
@@ -31,6 +36,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.FormBody;
 import okhttp3.Request;
@@ -171,22 +178,21 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             Toast.makeText(this, "账号或密码不能为空", Toast.LENGTH_SHORT).show();
         }else {
             showProgressDialog();
-            FormBody formBody = new FormBody
-                    .Builder()
-                    .add("name", account)
-                    .add("pass", password)
-                    .add("Consumer","Oneself")
-                    .build();
-            NetworkRequestUtil.getInstance().asyncPost(url, formBody, new NetworkRequestUtilListener() {
+            Map<String,String> map= new HashMap();
+            map.put("name",account);
+            map.put("pass",password);
+            map.put("Consumer","Oneself");
+            OkHttpAsk.requestNet(url, map, new OkHttpAskListener() {
                 @Override
-                public void onError(Request request, IOException e) {
-                    Toast.makeText(LoginActivity.this, "服务器连接失败", Toast.LENGTH_SHORT).show();
-                }
-                @Override
-                public void onSuccess(Request request, String result) {
-                    Log.d("TAG", "lss" + result);
-                    jsonAnalytic(result);
+                public void onSuccess(String str) {
                     dismiss();
+                  Log.d("zengs",str+"");
+                    jsonAnalytic(str);
+                }
+
+                @Override
+                public void onError() {
+                    Toast.makeText(LoginActivity.this, "服务器连接失败", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -207,9 +213,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                     Toast.makeText(this, "账号或者密码错误", Toast.LENGTH_SHORT).show();
                 }else {
                     jsonObject = jsonObject.getJSONObject("user");
-                    User user = new User();
-                    user.setOneselIdCard(jsonObject.getString("oneselIdCard"));
-                    user.setOneselIdName(jsonObject.getString("oneselIdName"));
+                    Oneself user = new Oneself();
+                    user.setOneselfIdCard(jsonObject.getString("oneselIdCard"));
+                    user.setOneselfIdName(jsonObject.getString("oneselIdName"));
                     user.setOneselfPhone(jsonObject.getString("oneselfPhone"));
                     user.setOneselfSerial(jsonObject.getString("oneselfSerial"));
                     user.setOneselfName(jsonObject.getString("oneselfName"));
@@ -220,7 +226,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                     editor.putString("name",user.getOneselfName());
                     editor.commit();
 
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                     startActivity(intent);
                 }
             }else if (Status.equals("error")){

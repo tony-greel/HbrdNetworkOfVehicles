@@ -19,8 +19,7 @@ import com.example.lijunjie.hbrdnetworkofvehicles.activity.loginand.LoginActivit
 import com.example.lijunjie.hbrdnetworkofvehicles.activity.main.MainActivity;
 import com.example.lijunjie.hbrdnetworkofvehicles.R;
 import com.example.lijunjie.hbrdnetworkofvehicles.activity.BaseActivity;
-import com.example.lijunjie.hbrdnetworkofvehicles.bean.MyUsers;
-import com.example.lijunjie.hbrdnetworkofvehicles.bean.User;
+import com.example.lijunjie.hbrdnetworkofvehicles.bean.Oneself;
 import com.example.lijunjie.hbrdnetworkofvehicles.util.AuthenticationIdNumberUtil;
 import com.example.lijunjie.hbrdnetworkofvehicles.util.CountDownTimerUtils;
 import com.example.lijunjie.hbrdnetworkofvehicles.util.network.NetworkRequestUtil;
@@ -31,8 +30,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-import cn.bmob.sms.BmobSMS;
-import cn.bmob.sms.listener.RequestSMSCodeListener;
 import okhttp3.FormBody;
 import okhttp3.Request;
 
@@ -212,15 +209,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         String verification = register_et_verification.getText().toString();
         String again_password = register_et_again_password.getText().toString().trim();
 
-        User user = new User();
-        user.setOneselfName(account);
-        user.setPassword(password);
-
         //缓存用户ID
         SharedPreferences sp = getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString("name",user.getOneselfName());
-        editor.putString("password",user.getPassword());
+        editor.putString("name",account);
+        editor.putString("password",password);
         editor.commit();
 
         if (account.equals("") || password.equals("") ||
@@ -329,9 +322,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         try {
             JSONObject jsonObject = new JSONObject(result);
             jsonObject = jsonObject.getJSONObject("user");
-            User user = new User();
-            user.setOneselIdCard(jsonObject.getString("oneselIdCard"));
-            user.setOneselIdName(jsonObject.getString("oneselIdName"));
+            Oneself user = new Oneself();
+            user.setOneselfIdCard(jsonObject.getString("oneselIdCard"));
+            user.setOneselfIdName(jsonObject.getString("oneselIdName"));
             user.setOneselfPhone(jsonObject.getString("oneselfPhone"));
             user.setOneselfSerial(jsonObject.getString("oneselfSerial"));
             user.setOneselfName(jsonObject.getString("oneselfName"));
