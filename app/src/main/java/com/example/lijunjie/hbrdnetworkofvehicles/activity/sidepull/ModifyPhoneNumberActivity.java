@@ -8,7 +8,7 @@ import com.example.lijunjie.hbrdnetworkofvehicles.activity.BaseActivity;
 
 /**
  * Created by lijunjie on 2018/6/6.
- * 重置密码
+ * 修改电话号码
  */
 
 public class ModifyPhoneNumberActivity extends BaseActivity {

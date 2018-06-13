@@ -15,15 +15,17 @@
             android:layout_width="9dp"
             android:layout_height="15dp"
             android:layout_marginLeft="13dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
             android:background="@drawable/img_register_back"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="32dp"
+            android:layout_marginBottom="7dp"
+            android:layout_alignParentBottom="true"
             android:text="用户反馈"
-            android:textSize="17sp"
+            android:textSize="16sp"
             android:textColor="#BCEFFF"/>
     </RelativeLayout>
 

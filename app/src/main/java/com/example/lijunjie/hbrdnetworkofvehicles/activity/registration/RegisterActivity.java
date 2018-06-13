@@ -127,26 +127,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.register_et_full_name: // 姓名输入框
-                break;
-
-            case R.id.register_et_id: // 身份证输入框
-                break;
-
-            case R.id.register_et_account: // 账号输入框
-                break;
-
-            case R.id.register_et_password: // 密码输入框
-                break;
-
-            case R.id.register_et_again_password: // 确认密码输入框
-                break;
-
-            case R.id.register_et_phone_number: // 手机号输入框
-                break;
-
-            case R.id.register_et_verification: // 验证码输入框
-                break;
 
             case R.id.register_img_back: // 顶部后退图片
                 Intent register_img_back_intent = new Intent(this, LoginActivity.class);
@@ -333,6 +313,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             SharedPreferences sp = getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
             editor.putString("name",user.getOneselfSerial());
+            editor.putString("phone",user.getOneselfPhone());
             editor.commit();
 
             Intent intent = new Intent(RegisterActivity.this, RegisterDindingVehicleActivity.class);

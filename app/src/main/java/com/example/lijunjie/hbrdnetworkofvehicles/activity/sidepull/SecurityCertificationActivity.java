@@ -53,6 +53,10 @@ public class SecurityCertificationActivity extends BaseActivity implements View.
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.security_certification_img_back:
+                finish();
+                break;
+
             case R.id.security_certification_verification:
                 CountDownTimerUtils mCountDownTimerUtils = new CountDownTimerUtils(security_certification_verification, 60000, 1000);
                 mCountDownTimerUtils.start();

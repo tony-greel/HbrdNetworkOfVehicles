@@ -4,67 +4,68 @@ package com.example.lijunjie.hbrdnetworkofvehicles.bean;
  * 车辆信息
  */
 public class CarInformation  {
-    private String CarInformationSerial;   // 终端序列号
-    private String UserSerial;    //用户
-    private String CarInformationBrand;   //车牌子
-    private String CarInformationMake;
-    private String CarInformationModel;
-    private String CarInformationStand;
-    private int GroupingId;   //分组id
+
+    private String carInformationSerial;   // 终端序列号
+    private String userSerial;    //用户
+    private String carInformationBrand;   //车牌子
+    private String carInformationMake;
+    private String carInformationModel;
+    private String carInformationStand;
+    private String groupingId;   //分组id
 
     public String getCarInformationSerial() {
-        return CarInformationSerial;
+        return carInformationSerial;
     }
 
     public void setCarInformationSerial(String carInformationSerial) {
-        CarInformationSerial = carInformationSerial;
+        this.carInformationSerial = carInformationSerial;
     }
 
     public String getUserSerial() {
-        return UserSerial;
+        return userSerial;
     }
 
     public void setUserSerial(String userSerial) {
-        UserSerial = userSerial;
+        this.userSerial = userSerial;
     }
 
     public String getCarInformationBrand() {
-        return CarInformationBrand;
+        return carInformationBrand;
     }
 
     public void setCarInformationBrand(String carInformationBrand) {
-        CarInformationBrand = carInformationBrand;
+        this.carInformationBrand = carInformationBrand;
     }
 
     public String getCarInformationMake() {
-        return CarInformationMake;
+        return carInformationMake;
     }
 
     public void setCarInformationMake(String carInformationMake) {
-        CarInformationMake = carInformationMake;
+        this.carInformationMake = carInformationMake;
     }
 
     public String getCarInformationModel() {
-        return CarInformationModel;
+        return carInformationModel;
     }
 
     public void setCarInformationModel(String carInformationModel) {
-        CarInformationModel = carInformationModel;
+        this.carInformationModel = carInformationModel;
     }
 
     public String getCarInformationStand() {
-        return CarInformationStand;
+        return carInformationStand;
     }
 
     public void setCarInformationStand(String carInformationStand) {
-        CarInformationStand = carInformationStand;
+        this.carInformationStand = carInformationStand;
     }
 
-    public int getGroupingId() {
-        return GroupingId;
+    public String getGroupingId() {
+        return groupingId;
     }
 
-    public void setGroupingId(int groupingId) {
-        GroupingId = groupingId;
+    public void setGroupingId(String groupingId) {
+        this.groupingId = groupingId;
     }
 }

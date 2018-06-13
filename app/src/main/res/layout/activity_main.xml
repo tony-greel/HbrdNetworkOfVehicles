@@ -93,16 +93,18 @@
                 <com.getbase.floatingactionbutton.FloatingActionButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    fab:fab_icon="@drawable/img_function_management"
                     android:id="@+id/main_fab_3" />
                 <com.getbase.floatingactionbutton.FloatingActionButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    fab:fab_icon="@drawable/img_real_time_monitoring_btn"
                     android:id="@+id/main_fab_2" />
                 <com.getbase.floatingactionbutton.FloatingActionButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     fab:fab_colorNormal="#ffffff"
-                    fab:fab_icon="@mipmap/ic_launcher_round"
+                    fab:fab_icon="@drawable/background_historical_track"
                     fab:fab_colorPressed="#ffffff"
                     fab:fab_title="可点击项"
                     android:id="@+id/main_fab_1" />

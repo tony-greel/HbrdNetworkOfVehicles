@@ -17,11 +17,25 @@ import java.util.List;
  */
 
 public class HbrdJsonParse {
+
+
     private static JSONObject jsonObject;
     private static JSONObject ModelObject;
     private static JSONArray ModelArray;
     private static JSONObject ModelArrayObj;
     private static Object pc;
+
+    /**
+     *
+     * @param str
+     * @param ModelName
+     * @param isOA false 数组 true 对象
+     * @param tClass 反射模型层
+     * @return
+     * @throws JSONException
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     */
     public static Object getJson(String str,String ModelName,boolean isOA,Class tClass) throws JSONException, IllegalAccessException, InstantiationException {
         jsonObject =new JSONObject(str);
         if(jsonObject.getString("Status").equals("ok")){
@@ -39,10 +53,10 @@ public class HbrdJsonParse {
                 List<Object> objects=new ArrayList<>();
                 ModelArray=jsonObject.getJSONArray(ModelName);
                 Field[] fs = tClass.getDeclaredFields();
-                for(int i=0;i<ModelName.length();i++){
+                for(int i=0;i<ModelArray.length();i++){
                     pc= tClass.newInstance();// 创建一个实例
                     for(Field s:fs){
-                        Log.d("zengs",ModelObject.getString(s.getName()));
+                      //  Log.d("zengs",ModelArray.getString(s.getName()));
                         s.setAccessible(true);// 将目标属性设置为可以访问
                         ModelArrayObj=ModelArray.getJSONObject(i);
                         s.set(pc,ModelArrayObj.getString(s.getName()));

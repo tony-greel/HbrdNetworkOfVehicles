@@ -7,42 +7,43 @@
 
     <RelativeLayout
         android:paddingBottom="5dp"
-        android:layout_marginTop="34dp"
         android:elevation="5dp"
+        android:background="@drawable/img_top_background"
         android:layout_width="match_parent"
-        android:layout_height="45dp">
+        android:layout_height="65dp">
         <ImageView
             android:id="@+id/add_vehicle_img_back"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
-            android:layout_marginLeft="25dp"
-            android:layout_centerVertical="true"
+            android:layout_width="9dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
             android:background="@drawable/img_register_back"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="7dp"
+            android:layout_alignParentBottom="true"
             android:text="添加车辆"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textColor="#BCEFFF"/>
     </RelativeLayout>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="209dp"
         android:layout_height="50dp">
         <EditText
-            android:id="@+id/add_vehicle_et_account"
+            android:id="@+id/add_vehicle_et_serial_number"
             android:textSize="14sp"
-            android:hint="车牌号码"
+            android:hint="序列号"
             android:textColorHint="#BCEFFF"
             android:textColor="#BCEFFF"
             android:maxLines="1"
             android:background="@null"
-            android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="20dp"
             android:singleLine="true"
@@ -60,28 +61,26 @@
         <ImageView
             android:visibility="gone"
             android:id="@+id/add_vehicle_img_disappear"
-            android:layout_marginRight="28dp"
+            android:layout_marginRight="25dp"
             android:src="@drawable/img_login_signout"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:layout_width="14dp"
-            android:layout_height="14dp"/>
+            android:layout_width="11dp"
+            android:layout_height="11dp"/>
     </RelativeLayout>
-
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="265dp"
+        android:layout_marginTop="268dp"
         android:layout_height="50dp">
         <EditText
-            android:id="@+id/add_vehicle_et_license_plate"
+            android:id="@+id/add_vehicle_license_plate_number"
             android:textSize="14sp"
-            android:hint="汽车品牌"
+            android:hint="车牌号"
             android:textColorHint="#BCEFFF"
             android:textColor="#BCEFFF"
             android:maxLines="1"
             android:background="@null"
-            android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="20dp"
             android:singleLine="true"
@@ -99,23 +98,22 @@
         <ImageView
             android:visibility="gone"
             android:id="@+id/add_vehicle_img_disappear_two"
-            android:layout_marginRight="28dp"
+            android:layout_marginRight="25dp"
             android:src="@drawable/img_login_signout"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:layout_width="14dp"
-            android:layout_height="14dp"/>
+            android:layout_width="11dp"
+            android:layout_height="11dp"/>
     </RelativeLayout>
-
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="330dp"
+        android:layout_marginTop="327dp"
         android:layout_height="50dp">
         <EditText
-            android:id="@+id/add_vehicle_et_car_model"
+            android:id="@+id/add_vehicle_et_brand"
             android:textSize="14sp"
-            android:hint="车辆型号"
+            android:hint="车辆品牌"
             android:textColorHint="#BCEFFF"
             android:textColor="#BCEFFF"
             android:maxLines="1"
@@ -138,23 +136,61 @@
         <ImageView
             android:visibility="gone"
             android:id="@+id/add_vehicle_img_disappear_three"
-            android:layout_marginRight="28dp"
+            android:layout_marginRight="25dp"
             android:src="@drawable/img_login_signout"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:layout_width="14dp"
-            android:layout_height="14dp"/>
+            android:layout_width="11dp"
+            android:layout_height="11dp"/>
     </RelativeLayout>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="395dp"
+        android:layout_marginTop="386dp"
         android:layout_height="50dp">
         <EditText
-            android:id="@+id/add_vehicle_et_car_color"
+            android:id="@+id/add_vehicle_et_car_model"
             android:textSize="14sp"
-            android:hint="车辆颜色"
+            android:hint="车辆型号"
+            android:textColorHint="#BCEFFF"
+            android:textColor="#BCEFFF"
+            android:maxLines="1"
+            android:background="@null"
+            android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="20dp"
+            android:singleLine="true"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>m
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="24dp"
+            android:singleLine="true"
+            android:layout_marginTop="40dp"
+            android:background="#BCEFFF"/>
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/add_vehicle_img_disappear_four"
+            android:layout_marginRight="25dp"
+            android:src="@drawable/img_login_signout"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="11dp"
+            android:layout_height="11dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="445dp"
+        android:layout_height="50dp">
+        <EditText
+            android:id="@+id/add_vehicle_et_frame_number"
+            android:textSize="14sp"
+            android:hint="车架号"
             android:textColorHint="#BCEFFF"
             android:textColor="#BCEFFF"
             android:maxLines="1"
@@ -176,24 +212,24 @@
             android:background="#BCEFFF"/>
         <ImageView
             android:visibility="gone"
-            android:id="@+id/add_vehicle_img_disappear_four"
-            android:layout_marginRight="28dp"
+            android:id="@+id/add_vehicle_img_serial_number"
+            android:layout_marginRight="25dp"
             android:src="@drawable/img_login_signout"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:layout_width="14dp"
-            android:layout_height="14dp"/>
+            android:layout_width="11dp"
+            android:layout_height="11dp"/>
     </RelativeLayout>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="500dp">
+        android:layout_marginTop="530dp">
         <Button
             android:id="@+id/add_vehicle_button"
-            android:layout_width="480dp"
-            android:layout_height="wrap_content"
+            android:layout_width="320dp"
+            android:layout_height="43dp"
             android:textColor="#BCEFFF"
             android:text="确认"
             android:layout_marginLeft="30dp"

@@ -101,21 +101,6 @@ public class RegisterDindingVehicleActivity extends BaseActivity implements View
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.registered_bound_vehicle_et_serial_number: // 序列号
-                break;
-
-            case R.id.registered_bound_vehicle_et_vehicle_license_plate_number: // 车牌号
-                break;
-
-            case R.id.registered_bound_vehicle_et_brand: // 车辆品牌
-                break;
-
-            case R.id.registered_bound_vehicle_et_car_model: // 车辆型号
-                break;
-
-            case R.id.registered_bound_vehicle_et_frame_number: // 车架号
-                break;
-
             case R.id.register_bound_img_back: // 顶部后退图片
                 Intent registered_bound_vehicle_img_back_intent = new Intent(this,SuccessActivity.class);
                 startActivity(registered_bound_vehicle_img_back_intent);
@@ -159,7 +144,7 @@ public class RegisterDindingVehicleActivity extends BaseActivity implements View
 
         SharedPreferences sp = getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
         String name = sp.getString("name", null);
-        Log.d("TAH",name);
+
 
         if (serial_number.equals("") || vehicle_license_plate_number.equals("") ||
                 brand.equals("") || car_model.equals("") ||

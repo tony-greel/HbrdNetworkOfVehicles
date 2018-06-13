@@ -19,6 +19,10 @@ import java.util.List;
 
 import cn.bmob.sms.BmobSMS;
 
+
+/**
+ * 实时监控
+ */
 public class VehicleControlActivity extends AppCompatActivity implements View.OnClickListener{
 
     private ViewPager main_viewPager;

@@ -8,32 +8,32 @@
     <RelativeLayout
         android:paddingBottom="5dp"
         android:elevation="5dp"
-        android:gravity="center_vertical"
         android:background="@drawable/img_top_background"
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:layout_height="65dp">
         <ImageView
             android:id="@+id/account_security_img_back"
-            android:layout_width="14dp"
-            android:layout_height="23dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="25dp"
+            android:layout_width="9dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
             android:background="@drawable/img_register_back"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="27dp"
+            android:layout_marginBottom="7dp"
+            android:layout_alignParentBottom="true"
             android:text="实时监控"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textColor="#BCEFFF"/>
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="65dp"
         android:background="@drawable/img_my_car_background">
 
         <android.support.v4.view.ViewPager

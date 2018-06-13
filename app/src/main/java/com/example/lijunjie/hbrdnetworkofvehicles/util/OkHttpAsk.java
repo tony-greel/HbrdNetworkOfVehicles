@@ -52,17 +52,13 @@ public class OkHttpAsk {
 
             @Override
             public void onResponse(Call call, final Response response) throws IOException {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            okHttpAskListener.onSuccess(response.body().string());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                handler.post(() -> {
+                    try {
+                        okHttpAskListener.onSuccess(response.body().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 });
-
             }
         });
     }

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.example.lijunjie.hbrdnetworkofvehicles.R;
 import com.example.lijunjie.hbrdnetworkofvehicles.activity.sidepull.AccountSecurityActivity;
@@ -54,16 +55,36 @@ public class SidePullFrameFragment extends Fragment implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.side_pull_frame_rl_my_car:
-                Intent side_pull_frame_rl_my_car_intent = new Intent(getContext(), MyCarAddActivity.class);
-                startActivity(side_pull_frame_rl_my_car_intent);
+                SharedPreferences sp = getActivity().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
+                String name = sp.getString("name", null);
+                if (name != null){
+                    Intent side_pull_frame_rl_my_car_intent = new Intent(getContext(), MyCarAddActivity.class);
+                    startActivity(side_pull_frame_rl_my_car_intent);
+                }else {
+                    Toast.makeText(getContext(), "请登录或者注册绑定一下车辆,这样我们将更好的为您服务！！", Toast.LENGTH_SHORT).show();
+                }
                 break;
+
             case R.id.side_pull_frame_rl_account_security:
-                Intent side_pull_frame_rl_account_security_intent = new Intent(getContext(), AccountSecurityActivity.class);
-                startActivity(side_pull_frame_rl_account_security_intent);
+                SharedPreferences sp_1 = getActivity().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
+                String name_1 = sp_1.getString("name", null);
+                if (name_1 != null){
+                    Intent side_pull_frame_rl_account_security_intent = new Intent(getContext(), AccountSecurityActivity.class);
+                    startActivity(side_pull_frame_rl_account_security_intent);
+                }else {
+                    Toast.makeText(getContext(), "请登录或者注册绑定一下车辆,这样我们将更好的为您服务！！", Toast.LENGTH_SHORT).show();
+                }
                 break;
+
             case R.id.side_pull_frame_rl_feedback:
-                Intent side_pull_frame_rl_feedback_intent = new Intent(getContext(), FeedbackActivity.class);
-                startActivity(side_pull_frame_rl_feedback_intent);
+                SharedPreferences sp_2 = getActivity().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
+                String name_2 = sp_2.getString("name", null);
+                if (name_2 != null){
+                    Intent side_pull_frame_rl_feedback_intent = new Intent(getContext(), FeedbackActivity.class);
+                    startActivity(side_pull_frame_rl_feedback_intent);
+                }else {
+                    Toast.makeText(getContext(), "请登录或者注册绑定一下车辆,这样我们将更好的为您服务！！", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
             case R.id.side_pull_frame_rl_sign_out:
@@ -78,7 +99,6 @@ public class SidePullFrameFragment extends Fragment implements View.OnClickListe
                             getActivity().finish();
                             getActivity().overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                         }
-
                     }
                 }).show();
                 break;

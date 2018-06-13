@@ -117,19 +117,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.login_rl:
-                break;
 
             case R.id.login_img_button:
                 Intent login_img_button_intent = new Intent(this, MainActivity.class);
                 startActivity(login_img_button_intent);
-                break;
-
-            case R.id.login_et_account:
-                break;
-
-            case R.id.login_et_password:
-
                 break;
 
             case R.id.login_img_disappear:
@@ -173,7 +164,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         String account = login_et_account.getText().toString();
         String password = login_et_password.getText().toString();
 
-
         if (account.equals("") && password.equals("")){
             Toast.makeText(this, "账号或密码不能为空", Toast.LENGTH_SHORT).show();
         }else {
@@ -186,7 +176,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 @Override
                 public void onSuccess(String str) {
                     dismiss();
-                  Log.d("zengs",str+"");
+                    Log.d("zengs",str+"");
                     jsonAnalytic(str);
                 }
 
@@ -223,10 +213,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                     //缓存用户ID
                     SharedPreferences sp = getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sp.edit();
-                    editor.putString("name",user.getOneselfName());
+                    editor.putString("name",user.getOneselfSerial());
+                    editor.putString("phone",user.getOneselfPhone());
                     editor.commit();
 
-                    Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
             }else if (Status.equals("error")){
