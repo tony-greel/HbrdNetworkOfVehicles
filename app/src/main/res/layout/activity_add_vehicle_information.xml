@@ -40,6 +40,7 @@
             android:id="@+id/add_vehicle_et_serial_number"
             android:textSize="14sp"
             android:hint="序列号"
+            android:maxLength="10"
             android:textColorHint="#BCEFFF"
             android:textColor="#BCEFFF"
             android:maxLines="1"
@@ -79,6 +80,7 @@
             android:hint="车牌号"
             android:textColorHint="#BCEFFF"
             android:textColor="#BCEFFF"
+            android:maxLength="7"
             android:maxLines="1"
             android:background="@null"
             android:layout_marginLeft="25dp"
@@ -110,7 +112,7 @@
         android:layout_width="match_parent"
         android:layout_marginTop="327dp"
         android:layout_height="50dp">
-        <EditText
+        <com.example.lijunjie.hbrdnetworkofvehicles.customcontrol.LimitEditText
             android:id="@+id/add_vehicle_et_brand"
             android:textSize="14sp"
             android:hint="车辆品牌"
@@ -118,7 +120,6 @@
             android:textColor="#BCEFFF"
             android:maxLines="1"
             android:background="@null"
-            android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="20dp"
             android:singleLine="true"
@@ -155,15 +156,15 @@
             android:hint="车辆型号"
             android:textColorHint="#BCEFFF"
             android:textColor="#BCEFFF"
+            android:maxLength="9"
             android:maxLines="1"
             android:background="@null"
-            android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="20dp"
             android:singleLine="true"
             android:layout_centerVertical="true"
             android:layout_width="match_parent"
-            android:layout_height="50dp"/>m
+            android:layout_height="50dp"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
@@ -193,6 +194,7 @@
             android:hint="车架号"
             android:textColorHint="#BCEFFF"
             android:textColor="#BCEFFF"
+            android:maxLength="17"
             android:maxLines="1"
             android:background="@null"
             android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"

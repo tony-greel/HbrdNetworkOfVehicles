@@ -19,6 +19,7 @@ import com.example.lijunjie.hbrdnetworkofvehicles.activity.BaseActivity;
 import com.example.lijunjie.hbrdnetworkofvehicles.activity.main.MainActivity;
 import com.example.lijunjie.hbrdnetworkofvehicles.activity.registration.RegisterDindingVehicleActivity;
 import com.example.lijunjie.hbrdnetworkofvehicles.activity.registration.SuccessActivity;
+import com.example.lijunjie.hbrdnetworkofvehicles.customcontrol.LimitEditText;
 import com.example.lijunjie.hbrdnetworkofvehicles.util.AuthenticationIdNumberUtil;
 import com.example.lijunjie.hbrdnetworkofvehicles.util.network.NetworkRequestUtil;
 import com.example.lijunjie.hbrdnetworkofvehicles.util.network.NetworkRequestUtilListener;
@@ -39,11 +40,14 @@ import okhttp3.Request;
 public class AddingVehiclesActivity extends BaseActivity implements View.OnClickListener{
 
     private EditText add_vehicle_et_serial_number , add_vehicle_license_plate_number ,
-            add_vehicle_et_brand , add_vehicle_et_car_model , add_vehicle_et_frame_number;
+                     add_vehicle_et_car_model , add_vehicle_et_frame_number;
+
+    private LimitEditText add_vehicle_et_brand;
+
 
     private ImageView add_vehicle_img_back  , add_vehicle_img_disappear ,
-            add_vehicle_img_disappear_two , add_vehicle_img_disappear_three ,
-            add_vehicle_img_disappear_four , add_vehicle_img_serial_number;
+                      add_vehicle_img_disappear_two , add_vehicle_img_disappear_three ,
+                      add_vehicle_img_disappear_four , add_vehicle_img_serial_number;
 
     private Button add_vehicle_button ;
 
@@ -145,12 +149,12 @@ public class AddingVehiclesActivity extends BaseActivity implements View.OnClick
             Toast.makeText(AddingVehiclesActivity.this, "请输入完整要绑定的车辆信息！", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (!AuthenticationIdNumberUtil.iscarbrand(vehicle_license_plate_number)) {
-            Toast.makeText(this, "车牌号码格式不正确，请输入正确格式", Toast.LENGTH_SHORT).show();
-            return;
-        }
         if (serial_number.length() > 10){
             Toast.makeText(this, "序列号必须大于10位", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!AuthenticationIdNumberUtil.iscarbrand(vehicle_license_plate_number)) {
+            Toast.makeText(this, "车牌号码格式不正确，请输入正确格式", Toast.LENGTH_SHORT).show();
             return;
         }
         showProgressDialog();
@@ -206,7 +210,7 @@ public class AddingVehiclesActivity extends BaseActivity implements View.OnClick
      */
     private void initView() {
         /**
-         * 车牌号输入框右边的清除图片监听
+         * 序列号输入框右边的清除图片监听
          */
         add_vehicle_et_serial_number.addTextChangedListener(new TextWatcher() {
             @Override
@@ -230,7 +234,7 @@ public class AddingVehiclesActivity extends BaseActivity implements View.OnClick
         });
 
         /**
-         * 汽车品牌输入框右边的清除图片监听
+         * 车牌号输入框右边的清除图片监听
          */
         add_vehicle_license_plate_number.addTextChangedListener(new TextWatcher() {
             @Override
@@ -254,7 +258,7 @@ public class AddingVehiclesActivity extends BaseActivity implements View.OnClick
         });
 
         /**
-         * 汽车型号输入框右边的的清除图片监听
+         * 车辆品牌输入框右边的的清除图片监听
          */
         add_vehicle_et_brand.addTextChangedListener(new TextWatcher() {
             @Override
@@ -279,9 +283,9 @@ public class AddingVehiclesActivity extends BaseActivity implements View.OnClick
 
 
         /**
-         * 汽车颜色输入框右边的的清除图片监听
+         * 车辆型号输入框右边的的清除图片监听
          */
-        add_vehicle_et_frame_number.addTextChangedListener(new TextWatcher() {
+        add_vehicle_et_car_model.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -304,9 +308,9 @@ public class AddingVehiclesActivity extends BaseActivity implements View.OnClick
 
 
         /**
-         * 汽车颜色输入框右边的的清除图片监听
+         * 车架号输入框右边的的清除图片监听
          */
-        add_vehicle_et_car_model.addTextChangedListener(new TextWatcher() {
+        add_vehicle_et_frame_number.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 

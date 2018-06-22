@@ -76,7 +76,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_width="11dp"
-                android:layout_height="11dp"/>
+                android:layout_height="match_parent"/>
         </RelativeLayout>
 
 
@@ -116,7 +116,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_width="11dp"
-                android:layout_height="11dp"/>
+                android:layout_height="match_parent"/>
             <ImageView
                 android:id="@+id/longin_password_lnvisible"
                 android:layout_marginRight="25dp"
@@ -124,7 +124,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_width="13dp"
-                android:layout_height="10dp"/>
+                android:layout_height="match_parent"/>
         </RelativeLayout>
 
 

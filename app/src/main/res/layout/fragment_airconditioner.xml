@@ -1,7 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:circle_seekbar="http://schemas.android.com/apk/res-auto">
+
+    <com.example.lijunjie.hbrdnetworkofvehicles.customcontrol.WaveView
+        android:id="@+id/wave_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.example.lijunjie.hbrdnetworkofvehicles.customcontrol.WaveView>
+
+    <TextView
+        android:layout_width="42dp"
+        android:layout_height="36dp"
+        android:text="℃"
+        android:textSize="30dp"
+        android:textColor="#ffffff"
+        android:layout_marginTop="27dp"
+        android:layout_marginLeft="90dp"/>
+
+    <TextView
+        android:layout_width="131dp"
+        android:layout_height="wrap_content"
+        android:text="22"
+        android:textSize="60dp"
+        android:textColor="#ffffff"
+        android:layout_marginTop="27dp"
+        android:layout_marginLeft="22dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/img_ac_airconditioner"
+        android:layout_marginTop="156dp"
+        android:layout_marginLeft="40dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/img_airconditioner_mode"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="156dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/img_airconditioner_vehicle"
+        android:layout_marginTop="156dp"
+        android:layout_marginRight="41dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/img_airconditioner_vent"
+        android:layout_marginTop="272dp"
+        android:layout_marginLeft="91dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/img_airconditioner_truck"
+        android:layout_marginTop="272dp"
+        android:layout_marginRight="85dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/img_airconditioner_wind_power"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="362dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/img_airconditioner_fan"
+        android:layout_marginTop="362dp"
+        android:layout_marginRight="21dp"/>
+
+    <com.example.lijunjie.hbrdnetworkofvehicles.customcontrol.EllipseSeekBar
+        android:id="@+id/circle_seekbar"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="match_parent"
+        android:thumb="@drawable/img_control_progress"
+        circle_seekbar:progress_background="@android:color/darker_gray"
+        circle_seekbar:progress_front="#3A4466"
+        circle_seekbar:progress_max="100"
+        circle_seekbar:progress_text_color="@color/dark_grey"
+        circle_seekbar:progress_text_size="30dp"
+        circle_seekbar:progress_text_stroke_width="10dp"
+        circle_seekbar:progress_width="10dp"
+        circle_seekbar:show_progress_text="true" />
 
 </RelativeLayout>

@@ -36,7 +36,8 @@ public class HbrdJsonParse {
      * @throws IllegalAccessException
      * @throws InstantiationException
      */
-    public static Object getJson(String str,String ModelName,boolean isOA,Class tClass) throws JSONException, IllegalAccessException, InstantiationException {
+    public static Object getJson(String str,String ModelName,boolean isOA,Class tClass)
+            throws JSONException, IllegalAccessException, InstantiationException {
         jsonObject =new JSONObject(str);
         if(jsonObject.getString("Status").equals("ok")){
             if(isOA){

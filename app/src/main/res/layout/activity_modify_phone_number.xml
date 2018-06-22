@@ -57,10 +57,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="绑定手机号是您身份的重要凭证，当账号发生异常时,\n将会通过该手机号第一时间通知您，请谨慎操作！"
+            android:text="绑定手机号是您身份的重要凭证，当账号发生异常时,将会通过该手机号第一时间通知您，请谨慎操作！"
             android:textColor="#BCEFFF"
+            android:textSize="15sp"
             android:layout_marginTop="160dp"
-            android:layout_marginLeft="40dp"/>
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -68,8 +70,8 @@
             android:layout_marginTop="240dp">
             <Button
                 android:id="@+id/modify_phone_number_vehicle_button"
-                android:layout_width="330dp"
-                android:layout_height="wrap_content"
+                android:layout_width="320dp"
+                android:layout_height="43dp"
                 android:textColor="#ffffff"
                 android:text="更换手机号"
                 android:layout_marginLeft="30dp"

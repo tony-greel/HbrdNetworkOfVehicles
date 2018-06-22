@@ -93,32 +93,29 @@ public class HistoricalTrackActivity extends BaseActivity implements View.OnClic
             itemList.add(new CustomWindowMyCar(getResources().getDrawable(R.drawable.img_circular_two), d.getDay()+" "+d.getWeek()));
         }
         historicalCustomWindow.setItemList(itemList);
-        historicalCustomWindow.setOnItemSelectListener(new HistoricalCustomWindow.OnItemSelectListener() {
-            @Override
-            public void onItemSelect(int position) {
-                switch (position){
-                    case 0:
-                        Toast.makeText(HistoricalTrackActivity.this, "1", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 1:
-                        Toast.makeText(HistoricalTrackActivity.this, "2", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 2:
-                        Toast.makeText(HistoricalTrackActivity.this, "3", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 3:
-                        Toast.makeText(HistoricalTrackActivity.this, "4", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 4:
-                        Toast.makeText(HistoricalTrackActivity.this, "5", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 5:
-                        Toast.makeText(HistoricalTrackActivity.this, "6", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 6:
-                        Toast.makeText(HistoricalTrackActivity.this, "7", Toast.LENGTH_SHORT).show();
-                        break;
-                }
+        historicalCustomWindow.setOnItemSelectListener(position -> {
+            switch (position){
+                case 0:
+                    Toast.makeText(HistoricalTrackActivity.this, "1", Toast.LENGTH_SHORT).show();
+                    break;
+                case 1:
+                    Toast.makeText(HistoricalTrackActivity.this, "2", Toast.LENGTH_SHORT).show();
+                    break;
+                case 2:
+                    Toast.makeText(HistoricalTrackActivity.this, "3", Toast.LENGTH_SHORT).show();
+                    break;
+                case 3:
+                    Toast.makeText(HistoricalTrackActivity.this, "4", Toast.LENGTH_SHORT).show();
+                    break;
+                case 4:
+                    Toast.makeText(HistoricalTrackActivity.this, "5", Toast.LENGTH_SHORT).show();
+                    break;
+                case 5:
+                    Toast.makeText(HistoricalTrackActivity.this, "6", Toast.LENGTH_SHORT).show();
+                    break;
+                case 6:
+                    Toast.makeText(HistoricalTrackActivity.this, "7", Toast.LENGTH_SHORT).show();
+                    break;
             }
         });
     }

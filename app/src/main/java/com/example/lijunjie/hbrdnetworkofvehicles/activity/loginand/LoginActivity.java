@@ -73,7 +73,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         initView();
     }
 
-
+    /**
+     * 绑定控件
+     */
     private void initialization() {
         login_rl = findViewById(R.id.login_rl);
 
@@ -82,7 +84,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         login_img_disappear = findViewById(R.id.login_img_disappear);
         login_img_disappear_two = findViewById(R.id.login_img_disappear_two);
 
-        longin_password_lnvisible = findViewById(R.id.longin_password_lnvisible);
+        longin_password_lnvisible = findViewById(R.id.longin_password_lnvisible); // 密码框显示密码左边的图片
 
         login_et_account = findViewById(R.id.login_et_account);
         login_et_password = findViewById(R.id.login_et_password);
@@ -94,6 +96,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     }
 
+    /**
+     * 初始化控件
+     */
     private void binding() {
         login_rl.setOnClickListener(this);
 
@@ -113,7 +118,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     }
 
-
+    /**
+     * 监听事件
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -121,6 +128,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             case R.id.login_img_button:
                 Intent login_img_button_intent = new Intent(this, MainActivity.class);
                 startActivity(login_img_button_intent);
+                finish();
                 break;
 
             case R.id.login_img_disappear:
@@ -146,7 +154,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             case R.id.login_tx_register:
                 Intent login_tx_register_intent = new Intent(this, RegisterActivity.class);
                 startActivity(login_tx_register_intent);
-
                 break;
 
             case R.id.login_button:
@@ -154,7 +161,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 break;
         }
     }
-
 
     /**
      * 登录按钮判断监听
@@ -182,6 +188,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
                 @Override
                 public void onError() {
+                    dismiss();
                     Toast.makeText(LoginActivity.this, "服务器连接失败", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -234,18 +241,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
      * 显示密码图片监听
      */
     private void imgPasswordDisappearMonitor() {
-        longin_password_lnvisible.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if ( eyeOpen ){
-                    login_et_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    longin_password_lnvisible.setImageResource(R.drawable.img_longin_password_lnvisible);
-                    eyeOpen = false ;
-                }else {
-                    login_et_password.setInputType( InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD );
-                    longin_password_lnvisible.setImageResource( R.drawable.img_longin_password_so );
-                    eyeOpen = true ;
-                }
+        longin_password_lnvisible.setOnClickListener(view -> {
+            if ( eyeOpen ){
+                login_et_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                longin_password_lnvisible.setImageResource(R.drawable.img_longin_password_lnvisible);
+                eyeOpen = false ;
+            }else {
+                login_et_password.setInputType( InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD );
+                longin_password_lnvisible.setImageResource( R.drawable.img_longin_password_so );
+                eyeOpen = true ;
             }
         });
     }

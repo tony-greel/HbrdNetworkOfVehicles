@@ -14,6 +14,11 @@ public class Car {
     private String id;
     private String info;
 
+    private String longitude;
+
+    private String latitude;
+
+
     public Car(String id, String latLng, String info) {
     }
 
@@ -45,5 +50,21 @@ public class Car {
         this.latLng = latLng;
         this.id = id;
         this.info = info;
+    }
+
+    public String isLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String isLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
     }
 }

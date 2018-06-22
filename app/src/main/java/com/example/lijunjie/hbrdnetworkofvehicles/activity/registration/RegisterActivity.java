@@ -20,6 +20,7 @@ import com.example.lijunjie.hbrdnetworkofvehicles.activity.main.MainActivity;
 import com.example.lijunjie.hbrdnetworkofvehicles.R;
 import com.example.lijunjie.hbrdnetworkofvehicles.activity.BaseActivity;
 import com.example.lijunjie.hbrdnetworkofvehicles.bean.Oneself;
+import com.example.lijunjie.hbrdnetworkofvehicles.customcontrol.LimitEditText;
 import com.example.lijunjie.hbrdnetworkofvehicles.util.AuthenticationIdNumberUtil;
 import com.example.lijunjie.hbrdnetworkofvehicles.util.CountDownTimerUtils;
 import com.example.lijunjie.hbrdnetworkofvehicles.util.network.NetworkRequestUtil;
@@ -40,8 +41,10 @@ import okhttp3.Request;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
 
-    private EditText register_et_full_name, register_et_id, register_et_account, register_et_password, register_et_again_password,
+    private EditText register_et_id, register_et_account, register_et_password, register_et_again_password,
             register_et_phone_number, register_et_verification;
+
+    private LimitEditText register_et_full_name;
 
 
     private ImageView register_img_full_name, register_img_id, register_img_disappear, register_password_lnvisible,
@@ -129,13 +132,13 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         switch (v.getId()) {
 
             case R.id.register_img_back: // 顶部后退图片
-                Intent register_img_back_intent = new Intent(this, LoginActivity.class);
-                startActivity(register_img_back_intent);
+                finish();
                 break;
 
             case R.id.register_img_button: // 顶部退出图片
                 Intent register_img_button_intent = new Intent(this, MainActivity.class);
                 startActivity(register_img_button_intent);
+                finish();
                 break;
 
             case R.id.register_img_full_name: // 账号输入框右边的清除图片
@@ -180,69 +183,70 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private void registerJudgementMonitor() {
         String url = "http://1517a91z44.iask.in:35052/login";
 
-        String account = register_et_account.getText().toString();
-        String password = register_et_password.getText().toString().trim();
-        String phone_number = register_et_phone_number.getText().toString();
-        String id = register_et_id.getText().toString();
-        String full_name = register_et_full_name.getText().toString();
+       final String account = register_et_account.getText().toString();
+       final String password = register_et_password.getText().toString().trim();
+       final String phone_number = register_et_phone_number.getText().toString();
+       final String id = register_et_id.getText().toString();final String full_name = register_et_full_name.getText().toString();
 
-        String verification = register_et_verification.getText().toString();
-        String again_password = register_et_again_password.getText().toString().trim();
+       final String verification = register_et_verification.getText().toString();
+       final  String again_password = register_et_again_password.getText().toString().trim();
 
-        //缓存用户ID
-        SharedPreferences sp = getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString("name",account);
-        editor.putString("password",password);
-        editor.commit();
+       if (account.equals("") || password.equals("") ||
+               phone_number.equals("") || id.equals("") ||
+               full_name.equals("") || again_password.equals("") ||
+               verification.equals("")) {
+           Toast.makeText(RegisterActivity.this, "请输入完整的注册信息!！", Toast.LENGTH_SHORT).show();
+           return;
+       }
 
-        if (account.equals("") || password.equals("") ||
-                phone_number.equals("") || id.equals("") ||
-                full_name.equals("") || again_password.equals("") ||
-                verification.equals("")) {
-            Toast.makeText(RegisterActivity.this, "请输入完整的注册信息!！", Toast.LENGTH_SHORT).show();
-            return;
-        }
+       if (!AuthenticationIdNumberUtil.Isuser(account)) {
+           Toast.makeText(this, "用户名格式不正确，需要2~10位包括下划线、英文、中文", Toast.LENGTH_SHORT).show();
+           return;
+       }
 
-        if (!AuthenticationIdNumberUtil.Isuser(account)) {
-            Toast.makeText(this, "用户名格式不正确，需要2~10位包括下划线、英文、中文", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (!AuthenticationIdNumberUtil.Ispass(password)) {
-            Toast.makeText(this, "密码格式不正确，必须大于6位", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (!AuthenticationIdNumberUtil.Isphone(phone_number)) {
-            Toast.makeText(this, "手机号码格式不正确，请输入正确格式", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (!AuthenticationIdNumberUtil.Isidcard(id)) {
-            Toast.makeText(this, "身份证号码格式不正确，请输入正确格式", Toast.LENGTH_SHORT).show();
-            return;
-        }
+       if (!AuthenticationIdNumberUtil.Ispass(password)) {
+           Toast.makeText(this, "密码格式不正确，必须大于6位", Toast.LENGTH_SHORT).show();
+           return;
+       }
 
-        showProgressDialog();
-        FormBody formBody = new FormBody
-                .Builder()
-                .add("OneselfName", account)
-                .add("OneselfPass", password)
-                .add("OneselfPhone",phone_number)
-                .add("OneselIdCard", id)
-                .add("OneselIdName",full_name)
-                .build();
-        NetworkRequestUtil.getInstance().asyncPost(url, formBody, new NetworkRequestUtilListener() {
-            @Override
-            public void onError(Request request, IOException e) {
-                Toast.makeText(RegisterActivity.this, "服务器连接失败", Toast.LENGTH_SHORT).show();
-            }
-            @Override
-            public void onSuccess(Request request, String result) {
-                Log.d("TAG", "lss" + result);
-                jsonAnalytic(result);
-                analogLanding();
-                dismiss();
-            }
-        });
+       if (!AuthenticationIdNumberUtil.Isphone(phone_number)) {
+           Toast.makeText(this, "手机号码格式不正确，请输入正确格式", Toast.LENGTH_SHORT).show();
+           return;
+       }
+
+       if (!AuthenticationIdNumberUtil.Isidcard(id)) {
+           Toast.makeText(this, "身份证号码格式不正确，请输入正确格式", Toast.LENGTH_SHORT).show();
+           return;
+       }
+       showProgressDialog();
+       FormBody formBody = new FormBody
+               .Builder()
+               .add("OneselfName", account)
+               .add("OneselfPass", password)
+               .add("OneselfPhone",phone_number)
+               .add("OneselIdCard", id)
+               .add("OneselIdName",full_name)
+               .build();
+       NetworkRequestUtil.getInstance().asyncPost(url, formBody, new NetworkRequestUtilListener() {
+           @Override
+           public void onError(Request request, IOException e) {
+               dismiss();
+               Toast.makeText(RegisterActivity.this, "服务器连接失败", Toast.LENGTH_SHORT).show();
+           }
+           @Override
+           public void onSuccess(Request request, String result) {
+               //缓存用户ID
+               SharedPreferences sp = getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
+               SharedPreferences.Editor editor = sp.edit();
+               editor.putString("name",account);
+               editor.putString("password",password);
+               editor.commit();
+               Log.d("TAG", "lss" + result);
+               jsonAnalytic(result);
+               analogLanding();
+               dismiss();
+           }
+       });
     }
 
     /**
@@ -252,9 +256,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private void jsonAnalytic(String result) {
         try {
             JSONObject jsonObject = new JSONObject(result);
-
             String Status = jsonObject.getString("Status");
             if (Status.equals("ok")) {
+
             }else if (Status.equals("error")){
                 Toast.makeText(this, "用户名、手机号、身份证重复，请重新输入！", Toast.LENGTH_SHORT).show();
             }
@@ -316,8 +320,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             editor.putString("phone",user.getOneselfPhone());
             editor.commit();
 
-            Intent intent = new Intent(RegisterActivity.this, RegisterDindingVehicleActivity.class);
+            Intent intent = new Intent(RegisterActivity.this, SuccessActivity.class);
             startActivity(intent);
+            finish();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -328,39 +333,30 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
      * 输入框右边图片监听
      */
     private void imgPasswordDisappearMonitor() {
-        register_et_password.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (eyeOpen) {
-                    //密码 TYPE_CLASS_TEXT 和 TYPE_TEXT_VARIATION_PASSWORD 必须一起使用
-                    register_et_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    register_password_lnvisible.setImageResource(R.drawable.img_longin_password_lnvisible);
-                    eyeOpen = false;
-                } else {
-                    //明文
-                    register_et_password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                    register_password_lnvisible.setImageResource(R.drawable.img_longin_password_so);
-                    eyeOpen = true;
-                }
+        register_password_lnvisible.setOnClickListener(view -> {
+            if ( eyeOpen ){
+                register_et_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                register_password_lnvisible.setImageResource(R.drawable.img_longin_password_lnvisible);
+                eyeOpen = false ;
+            }else {
+                register_et_password.setInputType( InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD );
+                register_password_lnvisible.setImageResource( R.drawable.img_longin_password_so );
+                eyeOpen = true ;
             }
         });
     }
 
+
     private void imgConfirmPasswordDisappearMonitor() {
-        register_password_lnvisible_two.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (eyeOpen) {
-                    //密码 TYPE_CLASS_TEXT 和 TYPE_TEXT_VARIATION_PASSWORD 必须一起使用
-                    register_et_again_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    register_password_lnvisible_two.setImageResource(R.drawable.img_longin_password_lnvisible);
-                    eyeOpen = false;
-                } else {
-                    //明文
-                    register_et_again_password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                    register_password_lnvisible_two.setImageResource(R.drawable.img_longin_password_so);
-                    eyeOpen = true;
-                }
+        register_password_lnvisible_two.setOnClickListener(view -> {
+            if ( eyeOpen ){
+                register_et_again_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                register_password_lnvisible_two.setImageResource(R.drawable.img_longin_password_lnvisible);
+                eyeOpen = false ;
+            }else {
+                register_et_again_password.setInputType( InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD );
+                register_password_lnvisible_two.setImageResource( R.drawable.img_longin_password_so );
+                eyeOpen = true ;
             }
         });
     }
@@ -446,6 +442,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             }
         });
     }
+
+
+
 
 
     /**

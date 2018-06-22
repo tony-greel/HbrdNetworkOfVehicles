@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.lijunjie.hbrdnetworkofvehicles.activity.main.MainActivity;
 import com.example.lijunjie.hbrdnetworkofvehicles.R;
 import com.example.lijunjie.hbrdnetworkofvehicles.activity.BaseActivity;
+import com.example.lijunjie.hbrdnetworkofvehicles.customcontrol.LimitEditText;
 import com.example.lijunjie.hbrdnetworkofvehicles.util.AuthenticationIdNumberUtil;
 import com.example.lijunjie.hbrdnetworkofvehicles.util.network.NetworkRequestUtil;
 import com.example.lijunjie.hbrdnetworkofvehicles.util.network.NetworkRequestUtilListener;
@@ -36,11 +37,13 @@ import okhttp3.Request;
 public class RegisterDindingVehicleActivity extends BaseActivity implements View.OnClickListener{
 
     private EditText registered_bound_vehicle_et_serial_number , registered_bound_vehicle_et_vehicle_license_plate_number ,
-            registered_bound_vehicle_et_brand , registered_bound_vehicle_et_car_model , registered_bound_vehicle_et_frame_number;
+                     registered_bound_vehicle_et_car_model , registered_bound_vehicle_et_frame_number;
+
+    private LimitEditText registered_bound_vehicle_et_brand;
 
     private ImageView register_bound_img_back  , registered_bound_vehicle_img_disappear ,
-            registered_bound_vehicle_img_disappear_two , registered_bound_vehicle_img_disappear_three ,
-            registered_bound_vehicle_img_disappear_four , registered_bound_vehicle_img_serial_number;
+                      registered_bound_vehicle_img_disappear_two , registered_bound_vehicle_img_disappear_three ,
+                      registered_bound_vehicle_img_disappear_four , registered_bound_vehicle_img_serial_number;
 
     private Button registered_bound_vehicle_button ;
 
@@ -102,8 +105,6 @@ public class RegisterDindingVehicleActivity extends BaseActivity implements View
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.register_bound_img_back: // 顶部后退图片
-                Intent registered_bound_vehicle_img_back_intent = new Intent(this,SuccessActivity.class);
-                startActivity(registered_bound_vehicle_img_back_intent);
                 break;
 
             case R.id.registered_bound_vehicle_img_disappear: // 序列号输入框右边的清除图片
@@ -179,6 +180,7 @@ public class RegisterDindingVehicleActivity extends BaseActivity implements View
             @Override
             public void onError(Request request, IOException e) {
                 Toast.makeText(RegisterDindingVehicleActivity.this, "服务器连接失败", Toast.LENGTH_SHORT).show();
+                dismiss();
             }
             @Override
             public void onSuccess(Request request, String result) {

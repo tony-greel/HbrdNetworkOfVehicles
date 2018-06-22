@@ -1,6 +1,7 @@
 package com.example.lijunjie.hbrdnetworkofvehicles.activity.sidepull;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 import com.example.lijunjie.hbrdnetworkofvehicles.R;
 import com.example.lijunjie.hbrdnetworkofvehicles.activity.BaseActivity;
 import com.example.lijunjie.hbrdnetworkofvehicles.activity.loginand.LoginActivity;
+import com.example.lijunjie.hbrdnetworkofvehicles.activity.registration.RegisterActivity;
+import com.example.lijunjie.hbrdnetworkofvehicles.activity.registration.RegisterDindingVehicleActivity;
 import com.example.lijunjie.hbrdnetworkofvehicles.util.AuthenticationIdNumberUtil;
 import com.example.lijunjie.hbrdnetworkofvehicles.util.OkHttpAsk;
 import com.example.lijunjie.hbrdnetworkofvehicles.util.OkHttpAskListener;
@@ -61,6 +64,10 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.reset_password_img_back:
+                finish();
+                break;
+
             case R.id.reset_password_vehicle_button:
                 requestModifyPassword();
                 break;
@@ -99,6 +106,7 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
                 @Override
                 public void onError() {
                     Toast.makeText(ResetPasswordActivity.this, "服务器连接失败", Toast.LENGTH_SHORT).show();
+                    dismiss();
                 }
             });
             
@@ -106,12 +114,15 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
 
     private void jsonAnalytic(String str) {
         try {
-            Log.d("EE",str);
             JSONObject jsonObject = new JSONObject(str);
 
             String Status = jsonObject.getString("Status");
-            if (Status.equals("error")) {
-                Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+            if (Status.equals("ok")) {
+                Toast.makeText(this, "修改成功", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ResetPasswordActivity.this, AccountSecurityActivity.class);
+                startActivity(intent);
+            }else if (Status.equals("error")){
+                Toast.makeText(this, "修改失败", Toast.LENGTH_SHORT).show();
             }
         }catch (JSONException e){
             e.printStackTrace();

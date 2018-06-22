@@ -3,6 +3,7 @@ package com.example.lijunjie.hbrdnetworkofvehicles.activity.sidepull;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -48,7 +49,7 @@ public class  MyCarAddActivity extends BaseActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adding_vehicles);
         initialization();
-        requestVehicleInformation(getApplicationContext());
+        requestVehicleInformation(this);
         binding();
 
     }
@@ -59,7 +60,7 @@ public class  MyCarAddActivity extends BaseActivity implements View.OnClickListe
     private void initialization() {
         adding_vehicles_recycler = findViewById(R.id.adding_vehicles_recycler);
         adding_vehicles_recycler.setLayoutManager(new GridLayoutManager(this,2));
-
+        adding_vehicles_recycler.setItemAnimator(new DefaultItemAnimator()); // 删除动画
         my_car_img_back = findViewById(R.id.my_car_img_back);
     }
 
@@ -70,6 +71,7 @@ public class  MyCarAddActivity extends BaseActivity implements View.OnClickListe
         my_car_img_back.setOnClickListener(this);
     }
 
+
     /**
      * 监听
      * @param v
@@ -78,17 +80,7 @@ public class  MyCarAddActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.adding_vehicles_recycler:
-                adding_vehicles_recycler.addOnItemTouchListener(new OnRecyclerItemClickListenerUtil(adding_vehicles_recycler) {
-                    @Override
-                    public void onItemClick(RecyclerView.ViewHolder viewHolder) {
-                        Toast.makeText(MyCarAddActivity.this, "点击", Toast.LENGTH_SHORT).show();
-                    }
-                    @Override
-                    public void onItemLOngClick(RecyclerView.ViewHolder viewHolder) {
-                        Toast.makeText(MyCarAddActivity.this, "长按删除", Toast.LENGTH_SHORT).show();
-                        adapter.notifyDataSetChanged();
-                    }
-                });
+              break;
 
             case R.id.my_car_img_back:
                 finish();
@@ -96,6 +88,15 @@ public class  MyCarAddActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
+
+    /**
+     * 当从另一个Activity返回时调用此方法再次加载
+     */
+    @Override
+    protected void onResume() {
+        requestVehicleInformation(this);
+        super.onResume();
+    }
 
     /**
      * 请求车辆信息
@@ -114,6 +115,7 @@ public class  MyCarAddActivity extends BaseActivity implements View.OnClickListe
         NetworkRequestUtil.getInstance().asyncPost(url, formBody, new NetworkRequestUtilListener() {
             @Override
             public void onError(Request request, IOException e) {
+                dismiss();
                 Toast.makeText(getApplicationContext(), "服务器连接失败", Toast.LENGTH_SHORT).show();
             }
             @Override
@@ -124,11 +126,17 @@ public class  MyCarAddActivity extends BaseActivity implements View.OnClickListe
                 dismiss();
             }
         });
+//        List<CarInformation> carInformations = new ArrayList<>();
+//        for (int i = 0; i < 10; i++) {
+//            CarInformation carInformation = new CarInformation();
+//            carInformation.setCarInformationBrand("sad");
+//            carInformation.setCarInformationMake("dsada");
+//            carInformation.setCarInformationSerial("sdadsa");
+//            carInformations.add(carInformation);
+//        }
+//        adapter = new VehiclesAdapter(context,carInformations);
+//        adding_vehicles_recycler.setAdapter(adapter);
 
-        List<CarInformation> carInformations = new ArrayList<>();
-        for (int i = 0; i < carInformations.size(); i++) {
-            carInformations.add(new CarInformation());
-        }
     }
 
     /**
@@ -145,30 +153,6 @@ public class  MyCarAddActivity extends BaseActivity implements View.OnClickListe
             e.printStackTrace();
         } catch (InstantiationException e) {
             e.printStackTrace();
-        }
-        List<CarInformation> list=new ArrayList<>();
-        if (result == null){
-            Toast.makeText(getApplicationContext(), "您还未添加车辆信息，请添加后再来", Toast.LENGTH_SHORT).show();
-        }else {
-            try{
-                JSONObject jsonObject = new JSONObject(result);
-
-                JSONArray children = jsonObject.getJSONArray("carInformations");
-                for (int j = 0; j < children.length(); j++) {
-                    jsonObject = children.getJSONObject(j);
-
-                    CarInformation carInformation = new CarInformation();
-
-                    carInformation.setCarInformationSerial(jsonObject.getString("carInformationSerial"));
-                    carInformation.setCarInformationBrand(jsonObject.getString("carInformationBrand"));
-                    carInformation.setCarInformationMake(jsonObject.getString("carInformationMake"));
-                    carInformation.setCarInformationModel(jsonObject.getString("carInformationModel"));
-                    list.add(carInformation);
-                    Log.d("WL", carInformation.getCarInformationBrand());
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
         }
         return null;
     }

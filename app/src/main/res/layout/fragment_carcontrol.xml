@@ -5,8 +5,9 @@
     android:layout_height="match_parent">
 
 
+
+
     <RelativeLayout
-        android:id="@+id/mainlayout"
         android:elevation="10dp"
         android:outlineProvider="bounds"
         android:layout_width="match_parent"
@@ -259,9 +260,16 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/img_vehicle_state"/>
         </RelativeLayout>
-    </RelativeLayout>
+    </RelativeLayout
 
-    <com.example.lijunjie.hbrdnetworkofvehicles.customcontrol.ZwCanvas
+        >
+
+    <RelativeLayout
+        android:id="@+id/mainlayout"
+        android:elevation="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></RelativeLayout>
+    <com.example.lijunjie.hbrdnetworkofvehicles.customcontrol.ZwTwoCanvas
         android:id="@+id/zw"
         android:elevation="10dp"
         android:layout_width="wrap_content"

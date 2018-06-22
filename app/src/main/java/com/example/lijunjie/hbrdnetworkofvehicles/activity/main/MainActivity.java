@@ -25,6 +25,7 @@ import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
+import com.amap.api.maps.TextureMapView;
 import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
@@ -34,11 +35,19 @@ import com.amap.api.maps.model.MyLocationStyle;
 import com.example.lijunjie.hbrdnetworkofvehicles.R;
 import com.example.lijunjie.hbrdnetworkofvehicles.activity.BaseActivity;
 import com.example.lijunjie.hbrdnetworkofvehicles.activity.loginand.LoginActivity;
+import com.example.lijunjie.hbrdnetworkofvehicles.adapter.VehiclesAdapter;
 import com.example.lijunjie.hbrdnetworkofvehicles.bean.Car;
+import com.example.lijunjie.hbrdnetworkofvehicles.bean.CarInformation;
 import com.example.lijunjie.hbrdnetworkofvehicles.bean.CustomWindowMyCar;
 import com.example.lijunjie.hbrdnetworkofvehicles.customcontrol.CustomWindow;
+import com.example.lijunjie.hbrdnetworkofvehicles.util.network.NetworkRequestUtil;
+import com.example.lijunjie.hbrdnetworkofvehicles.util.network.NetworkRequestUtilListener;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -47,10 +56,13 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.FormBody;
+import okhttp3.Request;
 
-public class MainActivity extends BaseActivity implements LocationSource,AMapLocationListener,View.OnClickListener{
 
-    private MapView mapView;
+public class MainActivity extends BaseActivity implements LocationSource,AMapLocationListener,View.OnClickListener {
+
+    private TextureMapView mapView;
     public AMap aMap = null;
 
     private CustomWindow customWindow;
@@ -60,37 +72,38 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
     public AMapLocationClient mlocationClient;
     public AMapLocationClientOption mLocationOption;
 
-    public UiSettings mUiSettings ;
+    public UiSettings mUiSettings;
 
     //模拟经纬度
     double m = 39.6077319721;
     double b = 116.9188057458;
 
-    public RelativeLayout main_rl , main_rl_whole;
+    public RelativeLayout main_rl, main_rl_whole;
 
     private DrawerLayout side_pull_drawer;
 
     private Button main_login_but;
 
-    private ImageView main_img_personal_information ;
+    private ImageView main_img_personal_information;
 
     private ImageView main_img_vehicle;
 
-    private FloatingActionsMenu main_fab_menu;
-    private FloatingActionButton main_fab_1 , main_fab_2 , main_fab_3;
+    private FloatingActionsMenu main_multiple_actions;
+    private FloatingActionButton main_function_management, main_real_time_monitoring, main_historical_track, main_data_statistics;
+
+    private long firstPressedTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         statusBarTransparent();
-
+        projectileFrame();
         setContentView(R.layout.activity_main);
         initialization();
         binding();
         mapView.onCreate(savedInstanceState);
         mapInitialization();
     }
-
 
     /**
      * 设置状态栏透明
@@ -101,24 +114,22 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
             decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
-
-        //弹框数据
-        customWindow = new CustomWindow(this);
-        List<CustomWindowMyCar> itemList = new ArrayList<>();
-        itemList.add(new CustomWindowMyCar(getResources().getDrawable(R.drawable.img_side_pull_frame_my_car_two), "All"));
-        itemList.add(new CustomWindowMyCar(getResources().getDrawable(R.drawable.img_side_pull_frame_my_car_two), "CheckIn"));
-        itemList.add(new CustomWindowMyCar(getResources().getDrawable(R.drawable.img_side_pull_frame_my_car_two), "Cancel"));
-        itemList.add(new CustomWindowMyCar(getResources().getDrawable(R.drawable.img_side_pull_frame_my_car_two), "Chat"));
-        itemList.add(new CustomWindowMyCar(getResources().getDrawable(R.drawable.img_side_pull_frame_my_car_two), "Complete"));
-        customWindow.setItemList(itemList);
-        customWindow.setOnItemSelectListener(new CustomWindow.OnItemSelectListener() {
-            @Override
-            public void onItemSelect(int position) {
-                Toast.makeText(MainActivity.this, position + "", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
+    /**
+     * 弹框数据
+     */
+    private void projectileFrame() {
+        customWindow = new CustomWindow(this);
+        List<CustomWindowMyCar> itemList = new ArrayList<>();
+        itemList.add(new CustomWindowMyCar(getResources().getDrawable(R.drawable.img_side_pull_frame_my_car_two), "湘A123FG"));
+        itemList.add(new CustomWindowMyCar(getResources().getDrawable(R.drawable.img_side_pull_frame_my_car_two), "湘B452DF"));
+        itemList.add(new CustomWindowMyCar(getResources().getDrawable(R.drawable.img_side_pull_frame_my_car_two), "湘C598VC"));
+        itemList.add(new CustomWindowMyCar(getResources().getDrawable(R.drawable.img_side_pull_frame_my_car_two), "湘D678AC"));
+        itemList.add(new CustomWindowMyCar(getResources().getDrawable(R.drawable.img_side_pull_frame_my_car_two), "湘F534CD"));
+        customWindow.setItemList(itemList);
+        customWindow.setOnItemSelectListener(position -> Toast.makeText(MainActivity.this, position + "", Toast.LENGTH_SHORT).show());
+    }
 
     /**
      * 控件初始化
@@ -133,11 +144,7 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
         main_rl = findViewById(R.id.main_rl);
         main_rl.getBackground().setAlpha(190);
 
-        SharedPreferences sp = getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
-        String name = sp.getString("name", null);
-        if (name != null){
-            main_rl.setVisibility(View.GONE);
-        }
+
 
         main_login_but = findViewById(R.id.main_login_but);
 
@@ -146,18 +153,15 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
         main_img_personal_information = findViewById(R.id.main_img_personal_information);
         main_img_vehicle = findViewById(R.id.main_img_vehicle);
 
-        main_fab_menu = findViewById(R.id.main_fab_menu);
+        main_multiple_actions = findViewById(R.id.main_multiple_actions);
 
-        main_fab_1 = findViewById(R.id.main_fab_1);
-        main_fab_2 = findViewById(R.id.main_fab_2);
-        main_fab_3 = findViewById(R.id.main_fab_3);
+        main_function_management = findViewById(R.id.main_function_management);
+        main_real_time_monitoring = findViewById(R.id.main_real_time_monitoring);
+        main_historical_track = findViewById(R.id.main_historical_track);
+        main_data_statistics = findViewById(R.id.main_data_statistics);
+
 
     }
-
-//    @Override
-//    protected void onNewIntent(Intent intent) {
-//        super.onNewIntent(intent);
-//    }
 
     /**
      * 监听初始化
@@ -169,10 +173,12 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
         main_img_vehicle.setOnClickListener(this);
         aMap.setLocationSource(this);// 设置定位监听
 
-        main_fab_menu.setOnClickListener(this);
-        main_fab_1.setOnClickListener(this);
-        main_fab_2.setOnClickListener(this);
-        main_fab_3.setOnClickListener(this);
+        main_multiple_actions.setOnClickListener(this);
+
+        main_function_management.setOnClickListener(this);
+        main_real_time_monitoring.setOnClickListener(this);
+        main_historical_track.setOnClickListener(this);
+        main_data_statistics.setOnClickListener(this);
 
         slidingOperation();
     }
@@ -182,11 +188,11 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
      */
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.main_login_but:
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
-                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+                overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
                 break;
 
             case R.id.side_pull_drawer:
@@ -199,31 +205,47 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
             case R.id.main_img_vehicle:
                 SharedPreferences sp = getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
                 String name = sp.getString("name", null);
-                if (name != null){
+                if (name != null) {
                     customWindow.showMenu();
-                }else {
-                    Toast.makeText(this, "请登录后查看车辆", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "请登录，绑定后查看车辆", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
-            case R.id.main_fab_menu:
+            case R.id.main_multiple_actions:
                 break;
 
-            case R.id.main_fab_1:
-                Intent main_fab_1_intent = new Intent(this, HistoricalTrackActivity.class);
-                startActivity(main_fab_1_intent);
+            case R.id.main_function_management:
+                Toast.makeText(this, "此功能暂未开放，敬请期待！！", Toast.LENGTH_SHORT).show();
                 break;
 
-            case R.id.main_fab_2:
-                Intent main_fab_2_intent = new Intent(this, VehicleControlActivity.class);
-                startActivity(main_fab_2_intent);
+            case R.id.main_real_time_monitoring:
+                SharedPreferences s = getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
+                String name_2 = s.getString("name", null);
+                if (name_2 != null) {
+                    Intent main_fab_2_intent = new Intent(this, VehicleControlActivity.class);
+                    startActivity(main_fab_2_intent);
+                } else {
+                    Toast.makeText(this, "请登录，绑定车辆后查看车辆历史轨迹", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
-            case R.id.main_fab_3:
+            case R.id.main_historical_track:
+                SharedPreferences s_1 = getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
+                String name_3 = s_1.getString("name", null);
+                if (name_3 != null) {
+                    Intent main_fab_1_intent = new Intent(this, HistoricalTrackActivity.class);
+                    startActivity(main_fab_1_intent);
+                } else {
+                    Toast.makeText(this, "请登录，绑定车辆后查看车辆", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case R.id.main_data_statistics:
+                Toast.makeText(this, "此功能暂未开放，敬请期待！！", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
-
 
     /**
      * 侧拉框事件处理
@@ -249,13 +271,40 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
         });
     }
 
+    /**
+     * 如果在AndroidManifest中调用singleTask启动模式，此方法必须重写
+     * @param intent
+     */
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        mapInitialization();
+    }
+
+    /**
+     * 点击两次退出程序
+     */
+    @Override
+    public void onBackPressed() {
+        if (System.currentTimeMillis() - firstPressedTime < 2000) {
+            super.onBackPressed();
+        } else {
+            Toast.makeText(MainActivity.this, "再按一次退出", Toast.LENGTH_SHORT).show();
+            firstPressedTime = System.currentTimeMillis();
+        }
+    }
 
     /**
      * 初始化地图
      */
     private void mapInitialization() {
+        // 获取登录或注册界面的缓存
         SharedPreferences sp = getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
         String name = sp.getString("name", null);
+        //判断是否被缓存
+        if (name != null) {
+            main_rl.setVisibility(View.GONE); // 如果有用户缓存则消失隐藏布局
+
             mUiSettings = aMap.getUiSettings();
             mUiSettings.setZoomControlsEnabled(false);
 
@@ -266,7 +315,7 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
                 Log.e("TAT", "今日");
                 initMapStyleFile(this, "style.data");
             }
-            if (aMap != null && name != null) {
+            if (aMap != null) {
                 MyLocationStyle locationStyle = new MyLocationStyle();
                 locationStyle.myLocationIcon(BitmapDescriptorFactory.fromResource(R.drawable.vehicle));
                 aMap.setMyLocationStyle(locationStyle);
@@ -282,33 +331,97 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
                     cars.add(car);
                 }
                 load(cars);
-        }else {
-                Toast.makeText(this, "请登录或者注册绑定一下车辆,这样我们将更好的为您服务！！", Toast.LENGTH_SHORT).show();
             }
+        } else {
+            Toast.makeText(this, "请登录或者注册绑定一下车辆,这样我们将更好的为您服务！！", Toast.LENGTH_SHORT).show();
+        }
     }
-
 
     /**
      * 通过集合批量传入车辆
+     *
      * @param cars
      */
     private void load(List<Car> cars) {
-        for(Car car:cars){
+        for (Car car : cars) {
             MarkerOptions markerOption = new MarkerOptions();
             markerOption.draggable(false);
             markerOption.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory
-                    .decodeResource(getResources(),R.drawable.vehicle)));
+                    .decodeResource(getResources(), R.drawable.vehicle)));
             markerOption.position(car.getLatLng());
-            Log.e("TAG", car.getLatLng().latitude+" "+car.getLatLng().longitude);
+            Log.e("TAG", car.getLatLng().latitude + " " + car.getLatLng().longitude);
             Marker e = aMap.addMarker(markerOption);
             //可以给定位点绑定一个信息对象
             e.setObject(car);
             //允许定位点显示信息窗口
             e.setTitle(car.getId());
             e.setSnippet(car.getInfo());
+//            requestVehicleInformation();
         }
     }
 
+    /**
+     * 请求车辆信息
+     *
+     * @param
+     */
+    private void requestVehicleInformation() {
+        String url = "http://1517a91z44.iask.in:35052/SelectLastPlace";
+
+        SharedPreferences sp = this.getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
+        String name = sp.getString("name", null);
+        showProgressDialog();
+        FormBody formBody = new FormBody
+                .Builder()
+                .add("UserSerial", name)
+                .build();
+        NetworkRequestUtil.getInstance().asyncPost(url, formBody, new NetworkRequestUtilListener() {
+            @Override
+            public void onError(Request request, IOException e) {
+                Toast.makeText(getApplicationContext(), "服务器连接失败", Toast.LENGTH_SHORT).show();
+                dismiss();
+            }
+
+            @Override
+            public void onSuccess(Request request, String result) {
+                Log.d("TAG", "lss" + result);
+                jsonAnalytic(result);
+                dismiss();
+            }
+        });
+    }
+
+    /**
+     * 解析用户ID里面的所有车辆
+     * @param result
+     * @return
+     */
+    private List<Car>jsonAnalytic(String result) {
+        List<Car> list = new ArrayList<>();
+
+        Log.d("SF", result);
+        try {
+            JSONObject jsonObject = new JSONObject(result);
+
+            JSONArray children = jsonObject.getJSONArray("place");
+            for (int j = 0; j < children.length(); j++) {
+                jsonObject = children.getJSONObject(j);
+
+                Car car = new Car("","","");
+
+                car.setLongitude(jsonObject.getString("positionY"));
+                car.setLatitude(jsonObject.getString("positionX"));
+
+                list.add(car);
+                for(int i = 0; i<list.size(); i++){
+                    Log.d("GH", String.valueOf(list.get(i)));
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     /**
      * 初始化地图样式文件

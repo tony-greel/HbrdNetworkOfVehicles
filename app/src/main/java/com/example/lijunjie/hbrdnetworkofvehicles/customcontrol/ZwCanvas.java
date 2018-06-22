@@ -183,7 +183,7 @@ public class ZwCanvas extends View{
                 x_down=event.getX();
                 y_down=event.getY();
                 ishalo=true;
-                zwCanvasListener.butdown();
+//                zwCanvasListener.butdown();
                 butHalo();
                 butdown=true;
                 bitmap= BitmapFactory.decodeResource(getResources(), R.mipmap.start1, options);  //设置按钮图片样子
@@ -272,7 +272,7 @@ public class ZwCanvas extends View{
             ishalo=false;
             if (butdown){
                 butdown=false;
-                zwCanvasListener.butup();
+//                zwCanvasListener.butup();
                 bitmap= BitmapFactory.decodeResource(getResources(), R.mipmap.start, options);  //设置按钮图片样子
                 invalidate();
             }

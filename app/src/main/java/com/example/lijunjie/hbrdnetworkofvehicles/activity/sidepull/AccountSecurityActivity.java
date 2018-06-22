@@ -70,6 +70,11 @@ public class AccountSecurityActivity extends BaseActivity implements View.OnClic
                 finish();
                 break;
 
+            case R.id.account_security_tx_modify_mobile_phone:
+                Intent account_security_tx_modify_mobile_phone_intent = new Intent(this, ModifyPhoneNumberActivity.class);
+                startActivity(account_security_tx_modify_mobile_phone_intent);
+                break;
+
         }
     }
 }

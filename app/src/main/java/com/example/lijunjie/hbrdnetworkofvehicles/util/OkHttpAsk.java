@@ -47,7 +47,7 @@ public class OkHttpAsk {
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                okHttpAskListener.onError();
+                handler.post(()->okHttpAskListener.onError());
             }
 
             @Override

@@ -53,12 +53,7 @@ public class NetworkRequestUtil {
         public void onFailure(Call call, IOException e) {
             final IOException fe = e;
             if (httpCallBack != null) {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        httpCallBack.onError(request, fe);
-                    }
-                });
+                handler.post(() -> httpCallBack.onError(request, fe));
             }
         }
 
@@ -66,12 +61,7 @@ public class NetworkRequestUtil {
         public void onResponse(Call call, Response response) throws IOException {
             final String result = response.body().string();
             if (httpCallBack != null) {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        httpCallBack.onSuccess(request, result);
-                    }
-                });
+                handler.post(() -> httpCallBack.onSuccess(request, result));
             }
         }
     }

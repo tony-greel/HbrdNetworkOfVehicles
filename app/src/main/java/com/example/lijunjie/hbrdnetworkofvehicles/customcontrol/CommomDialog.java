@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.lijunjie.hbrdnetworkofvehicles.R;
@@ -16,8 +17,8 @@ import com.example.lijunjie.hbrdnetworkofvehicles.R;
 public class CommomDialog extends Dialog implements View.OnClickListener{
     private TextView contentTxt;
     private TextView titleTxt;
-    private TextView submitTxt;
-    private TextView cancelTxt;
+    private Button submitTxt;
+    private Button cancelTxt;
 
     private Context mContext;
     private String content;
@@ -80,9 +81,9 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
     private void initView(){
         contentTxt = (TextView)findViewById(R.id.content);
         titleTxt = (TextView)findViewById(R.id.title);
-        submitTxt = (TextView)findViewById(R.id.submit);
+        submitTxt = (Button)findViewById(R.id.submit);
         submitTxt.setOnClickListener(this);
-        cancelTxt = (TextView)findViewById(R.id.cancel);
+        cancelTxt = (Button)findViewById(R.id.cancel);
         cancelTxt.setOnClickListener(this);
 
         contentTxt.setText(content);

@@ -52,12 +52,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="84dp">
-
-                <com.amap.api.maps.MapView
+                <com.amap.api.maps.TextureMapView
                 android:id="@+id/main_map"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-
             <RelativeLayout
                 android:id="@+id/main_rl"
                 android:layout_width="match_parent"
@@ -70,7 +68,6 @@
                         android:layout_marginLeft="10dp"
                         android:text="检测到您当前未登录账号，请先进行账号登录"
                         android:textSize="13dp" />
-
                     <Button
                         android:id="@+id/main_login_but"
                         android:layout_width="72dp"
@@ -84,30 +81,40 @@
                         android:layout_marginRight="10dp" />
             </RelativeLayout>
 
+
             <com.getbase.floatingactionbutton.FloatingActionsMenu
-                android:id="@+id/main_fab_menu"
-                fab:fab_addButtonColorNormal="@color/color_accent"
+                android:id="@+id/main_multiple_actions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                fab:fab_addButtonColorNormal="#4C71D7"
+                fab:fab_addButtonColorPressed="#4C71D7"
+                android:layout_marginBottom="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="10dp"
                 android:layout_gravity="bottom|end">
                 <com.getbase.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/main_function_management"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    fab:fab_icon="@drawable/img_function_management"
-                    android:id="@+id/main_fab_3" />
+                    android:src="@drawable/img_function_management" />
                 <com.getbase.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/main_real_time_monitoring"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    fab:fab_icon="@drawable/img_real_time_monitoring_btn"
-                    android:id="@+id/main_fab_2" />
+                    android:src="@drawable/img_real_time_monitoring_btn" />
                 <com.getbase.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/main_historical_track"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    fab:fab_colorNormal="#ffffff"
-                    fab:fab_icon="@drawable/background_historical_track"
-                    fab:fab_colorPressed="#ffffff"
-                    fab:fab_title="可点击项"
-                    android:id="@+id/main_fab_1" />
+                    android:src="@drawable/img_historical_track" />
+                <com.getbase.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/main_data_statistics"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_data_statistics_btn" />
             </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
         </FrameLayout>

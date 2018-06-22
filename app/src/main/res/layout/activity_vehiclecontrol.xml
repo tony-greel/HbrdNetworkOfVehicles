@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:paddingBottom="5dp"
@@ -12,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="65dp">
         <ImageView
-            android:id="@+id/account_security_img_back"
+            android:id="@+id/vehicle_control_img_back"
             android:layout_width="9dp"
             android:layout_height="15dp"
             android:layout_marginLeft="13dp"
@@ -37,7 +35,7 @@
         android:background="@drawable/img_my_car_background">
 
         <android.support.v4.view.ViewPager
-            android:id="@+id/main_view_pager"
+            android:id="@+id/vehicle_control_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </android.support.v4.view.ViewPager>

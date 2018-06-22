@@ -1,23 +1,25 @@
 package com.example.lijunjie.hbrdnetworkofvehicles.activity.main;
 
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Switch;
 
 import com.example.lijunjie.hbrdnetworkofvehicles.R;
 import com.example.lijunjie.hbrdnetworkofvehicles.adapter.FragmentAdapter;
+import com.example.lijunjie.hbrdnetworkofvehicles.customcontrol.MyViewPager;
 import com.example.lijunjie.hbrdnetworkofvehicles.fragment.AirConditionerFragment;
 import com.example.lijunjie.hbrdnetworkofvehicles.fragment.CarControlFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import cn.bmob.sms.BmobSMS;
 
 
 /**
@@ -25,7 +27,8 @@ import cn.bmob.sms.BmobSMS;
  */
 public class VehicleControlActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private ViewPager main_viewPager;
+    private ViewPager vehicle_control_pager;
+    private ImageView vehicle_control_img_back;
     private FragmentAdapter adapter;
 
 
@@ -56,14 +59,16 @@ public class VehicleControlActivity extends AppCompatActivity implements View.On
      * 控件绑定
      */
     private void initialization() {
-        main_viewPager = findViewById(R.id.main_view_pager);
+        vehicle_control_pager = findViewById(R.id.vehicle_control_pager);
+        vehicle_control_img_back = findViewById(R.id.vehicle_control_img_back);
     }
 
     /**
      * 控件监听初始化
      */
     private void binding() {
-        main_viewPager.setOnClickListener(this);
+        vehicle_control_pager.setOnClickListener(this);
+        vehicle_control_img_back.setOnClickListener(this);
     }
 
     /**
@@ -75,31 +80,33 @@ public class VehicleControlActivity extends AppCompatActivity implements View.On
         fragments.add(new CarControlFragment());
 
         adapter = new FragmentAdapter(getSupportFragmentManager(), fragments);
-        main_viewPager.setCurrentItem(0);
-        main_viewPager.setAdapter(adapter);
+        vehicle_control_pager.setCurrentItem(0);
+        vehicle_control_pager.setAdapter(adapter);
+//        vehicle_control_pager.setAllowedSwipeDirection(MyViewPager.SwipeDirection.right);
+//        vehicle_control_pager.setAllowedSwipeDirection(MyViewPager.SwipeDirection.left);
 
-        main_viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+        vehicle_control_pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
-
             }
             @Override
             public void onPageScrollStateChanged(int state) {
 
             }
         });
-
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-
+            case R.id.vehicle_control_img_back:
+                finish();
+                break;
         }
     }
 }

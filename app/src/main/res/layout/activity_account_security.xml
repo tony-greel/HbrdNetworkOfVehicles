@@ -40,32 +40,34 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
+                android:id="@+id/text_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="绑定手机"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:textColor="#b5d9e4"
-                android:layout_marginTop="32dp"
-                android:layout_marginLeft="13dp"/>
+                android:layout_marginTop="42dp"
+                android:layout_marginLeft="20dp"/>
             <TextView
+                android:layout_below="@+id/text_1"
                 android:id="@+id/account_security_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="17373224430"
-                android:textSize="12sp"
+                android:textSize="15sp"
                 android:textColor="#4a5e64"
-                android:layout_marginTop="60dp"
-                android:layout_marginLeft="13dp"/>
+                android:layout_marginTop="14dp"
+                android:layout_marginLeft="20dp"/>
 
             <TextView
                 android:id="@+id/account_security_tx_modify_mobile_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="去修改"
-                android:textSize="12sp"
+                android:textSize="15sp"
                 android:textColor="#BCEFFF"
                 android:layout_marginRight="34dp"
-                android:layout_marginTop="42dp"
+                android:layout_marginTop="57dp"
                 android:layout_alignParentRight="true"/>
             <ImageView
                 android:id="@+id/account_security_img"
@@ -73,52 +75,60 @@
                 android:layout_height="11dp"
                 android:background="@drawable/img_forward"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="45dp"
+                android:layout_marginTop="62dp"
                 android:layout_alignParentRight="true"/>
             <View
+                android:layout_below="@+id/account_security_phone"
+                android:id="@+id/view_1"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#BCEFFF"
-                android:layout_marginTop="89dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp">
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
             </View>
 
             <TextView
+                android:id="@+id/text_3"
+                android:layout_below="@+id/view_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="登录密码"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:textColor="#b5d9e4"
-                android:layout_marginTop="120dp"
-                android:layout_marginLeft="14dp"/>
+                android:layout_marginTop="42dp"
+                android:layout_marginLeft="20dp"/>
 
             <TextView
+                android:id="@+id/text_4"
+                android:layout_below="@+id/text_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="密码已设置"
-                android:textSize="12sp"
+                android:text="*****已设置"
+                android:textSize="15sp"
                 android:textColor="#4a5e64"
-                android:layout_marginTop="148dp"
-                android:layout_marginLeft="15dp"/>
+                android:layout_marginTop="13dp"
+                android:layout_marginLeft="20dp"/>
 
             <TextView
+                android:layout_below="@+id/view_1"
                 android:id="@+id/account_security_tx_modify_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="去修改"
-                android:textSize="12sp"
+                android:textSize="15sp"
                 android:textColor="#BCEFFF"
                 android:layout_marginRight="34dp"
-                android:layout_marginTop="133dp"
+                android:layout_marginTop="66dp"
                 android:layout_alignParentRight="true"/>
             <ImageView
+                android:layout_below="@+id/view_1"
                 android:id="@+id/account_security_img_modify_password"
                 android:layout_width="6dp"
                 android:layout_height="11dp"
                 android:background="@drawable/img_forward"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="136dp"
+                android:layout_marginTop="70dp"
                 android:layout_alignParentRight="true"/>
         </RelativeLayout>
 

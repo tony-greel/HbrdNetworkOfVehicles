@@ -8,6 +8,4 @@ public interface ZwCanvasListener {
     void up();
     void left();
     void right();
-    void butdown();
-    void butup();
 }

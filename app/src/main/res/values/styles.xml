@@ -6,6 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item  name="android:windowBackground">@drawable/img_login_background</item>
         <item name="android:windowTranslucentStatus" tools:ignore="NewApi">true</item>
     </style>
 
@@ -25,8 +28,6 @@
         <item name="android:windowBackground">@null</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>
-
-
 
     <style name="AppThemeBase" parent="AppThemeBase">
     </style>
